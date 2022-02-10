@@ -31,9 +31,9 @@ const listItemStyle = `
 `
 const ListItem = styled.div`
   ${listItemStyle}
-  &:hover { background: #313843; }
+  :hover { background: #313843; }
 `
 const MoreItem = styled.div`
   ${listItemStyle}
-  &:hover { color: whitesmoke; }
+  :hover { color: whitesmoke; }
 `

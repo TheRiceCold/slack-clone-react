@@ -17,7 +17,7 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  background: #19191b;
+  background: #19191B;
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -41,7 +41,7 @@ const Button = styled.a`
   border-radius: 4px;
   font-weight: bold;
   margin-right: 10px;
-  background: #e01e5a;
+  background: #E01E5A;
 
   text-decoration: none;
   transition: all 0.3s linear;
@@ -50,7 +50,7 @@ const Button = styled.a`
     outline: 1px solid #E01E5A;
   }
   :last-child{ 
-    background: #2eb67d;   
+    background: #2EB67D;   
     :hover { 
       background: transparent;
       outline: 1px solid #2EB67D;

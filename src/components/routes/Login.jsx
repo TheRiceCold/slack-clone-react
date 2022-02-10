@@ -1,12 +1,13 @@
-import Toast from '../components/stateful/Toast'
-import Form from '../components/stateless/Form'
-import {inputData} from '../data/authInputData'
-import {login} from '../utils/api/user'
+import {useAuth} from '../../contexts/AuthProvider'
+import {inputData} from '../../data/authInputData'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import Toast from '../stateful/Toast'
+import Form from '../stateless/Form'
 import {useState} from 'react'
 
-export default({setUser}) => {
+export default() => {
+  const {setUser, login} = useAuth()
   const [toast, setToast] = useState({
     show: false, 
     type:'fail', 
@@ -25,15 +26,11 @@ export default({setUser}) => {
         message: 'Fields cannot be empty',
       })
     } else {
-      const userData = {
-        'email': email,
-        'password': password
-      }
-
-      const user = await login(userData)
+      const user = await login({'email': email, 'password': password})
       if (user) {
-        localStorage.setItem('user', JSON.stringify(user))
-        setUser(user)
+        const userToken = btoa(JSON.stringify(user))
+        localStorage.user = userToken
+        setUser(atob(userToken))
       }
     }
   }
@@ -72,7 +69,7 @@ const LoginPage = styled.div`
   overflow: hidden;
   color: whitesmoke;
   align-items: center;
-  background: #19191b;
+  background: #19191B;
   justify-content: center;
 `
 
@@ -99,6 +96,6 @@ const Content = styled.div`
     margin-top: 25px;
     color: whitesmoke;
     text-decoration: none;
-    &:hover { text-decoration: underline; }
+    :hover { text-decoration: underline; }
   }
 `
