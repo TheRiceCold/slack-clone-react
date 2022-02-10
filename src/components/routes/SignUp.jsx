@@ -1,20 +1,24 @@
-import Form from '../components/stateless/Form'
-import {inputData} from '../data/authInputData'
-import {register} from '../utils/api/user'
+import {useAuth} from '../../contexts/AuthProvider'
+import {inputData} from '../../data/authInputData'
 import styled from 'styled-components'
+import Form from '../stateless/Form'
 import {useState} from 'react'
 
 export default() => {
+  const {signUp} = useAuth()
   const handleSubmit = e => {
-    // if(!email || !password || !confirmPassword) return
-    
-    // const newUser = {
-    //   'email': email,
-    //   'password': password,
-    //   'password_confirmation': confirmPassword
-    // }
-    
-    // register(newUser) 
+    e.preventDefault()
+    const email = e.target.email.value
+    const password = e.target.password.value
+    const confirmPassword = e.target.confirmPassword.value
+
+    if(!email || !password || !confirmPassword) return
+
+    signUp({
+      'email': email,
+      'password': password,
+      'password_confirmation': confirmPassword
+    })
   }
 
   return(
@@ -41,7 +45,7 @@ const SignUpPage = styled.div`
   display: flex;
   color: whitesmoke;
   align-items: center;
-  background: #19191b;
+  background: #19191B;
   justify-content: center;
 `
 

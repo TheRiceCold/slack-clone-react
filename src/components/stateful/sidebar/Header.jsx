@@ -10,7 +10,7 @@ export default() => (
     <p>Avion School</p>
     <HiChevronDown/>
     <NewMessage to='/newMessage'>
-      <HiOutlinePencilAlt size={18}/>
+      <HiOutlinePencilAlt size={18} color={'black'}/>
     </NewMessage> 
   </Header>
 )
