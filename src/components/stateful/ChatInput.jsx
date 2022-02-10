@@ -1,15 +1,25 @@
-import {useMessages} from '../contexts/MessagesProvider'
-import {useUsers} from '../contexts/UsersProvider'
-import {useAuth} from '../contexts/AuthProvider'
+<<<<<<< HEAD:src/components/stateful/ChatInput.jsx
+import {sendMessage} from '../../utils/api/messages'
+=======
+import {useMessages} from '../../contexts/MessagesProvider'
+import {useUsers} from '../../contexts/UsersProvider'
+import {useAuth} from '../../contexts/AuthProvider'
+>>>>>>> e843a8aa474356f908ee3ad6e60d2e5a40186948:src/components/ChatInput.jsx
 import {HiPaperAirplane} from 'react-icons/hi'
 import styled from 'styled-components'
 import {useRef} from 'react'
 
+<<<<<<< HEAD:src/components/stateful/ChatInput.jsx
+export default({auth}) => {
+  const [input, setInput] = useState('')
+  const [message, setMessage] = useState('')
+=======
 export default() => {
   const {user} = useAuth()
   const inputRef = useRef(null)
   const {selectedId} = useUsers()
   const {sendMessage} = useMessages()
+>>>>>>> e843a8aa474356f908ee3ad6e60d2e5a40186948:src/components/ChatInput.jsx
 
   const handleClick = () => {
     let input = inputRef.current.value

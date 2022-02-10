@@ -1,14 +1,25 @@
+<<<<<<< HEAD:src/components/SearchUser.jsx
 import {useUsers} from '../contexts/UsersProvider'
 import {useEffect, useState, useRef} from 'react'
+=======
+import {getAllUsers} from '../../utils/api/user'
+import {useEffect, useState} from 'react'
+>>>>>>> 7b386eb1bb74171a23b339b8c8aa410399f517a7:src/components/stateful/SearchUser.jsx
 import styled from 'styled-components'
 import {CgClose} from 'react-icons/cg'
 
+<<<<<<< HEAD:src/components/SearchUser.jsx
 export default() => {
   const inputRef = useRef()
   const {
     users, getEmailById,
     selectedId, setSelectedId
   } = useUsers()
+=======
+export default({auth}) => {
+  const [search, setSearch] = useState('')
+  const [userList, setUserList] = useState([])
+>>>>>>> 7b386eb1bb74171a23b339b8c8aa410399f517a7:src/components/stateful/SearchUser.jsx
   const [suggestions, setSuggestions] = useState([])
 
   const handleOnChange = () => {
@@ -29,6 +40,7 @@ export default() => {
     inputRef.current.placeholder = ''
   }
 
+<<<<<<< HEAD:src/components/SearchUser.jsx
   return (
     <>
       <Search>
@@ -62,6 +74,8 @@ export default() => {
   )  
 }
 
+=======
+>>>>>>> 7b386eb1bb74171a23b339b8c8aa410399f517a7:src/components/stateful/SearchUser.jsx
 const Search = styled.div`
   width: 100%;
   height: 49px;

@@ -1,4 +1,4 @@
-import {axiosAPI} from './axiosAPI'
+import {axiosAPI} from '../utils/axiosAPI'
 import {
   createContext, useContext,
   useState, useLayoutEffect,

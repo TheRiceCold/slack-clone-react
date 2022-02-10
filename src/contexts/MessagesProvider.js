@@ -1,5 +1,5 @@
+import {axiosAPI} from '../utils/axiosAPI'
 import {useAuth} from './AuthProvider'
-import {axiosAPI} from './axiosAPI'
 import {
   createContext, useContext,
   useState, useEffect,

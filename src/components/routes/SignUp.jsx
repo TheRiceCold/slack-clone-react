@@ -1,8 +1,13 @@
 import {useAuth} from '../../contexts/AuthProvider'
 import {inputData} from '../../data/authInputData'
 import styled from 'styled-components'
+<<<<<<< HEAD
 import {useState} from 'react'
 import Form from '../Form'
+=======
+import Form from '../stateless/Form'
+import {useState} from 'react'
+>>>>>>> 7b386eb1bb74171a23b339b8c8aa410399f517a7
 
 export default() => {
   const {signUp} = useAuth()

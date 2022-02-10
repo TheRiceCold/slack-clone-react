@@ -1,4 +1,8 @@
+<<<<<<< HEAD:src/components/Conversations.jsx
+import {useMessages} from '../contexts/MessagesProvider'
+=======
 import {useMessages} from '../../contexts/MessagesProvider'
+>>>>>>> 7b386eb1bb74171a23b339b8c8aa410399f517a7:src/components/stateless/Conversations.jsx
 import styled from 'styled-components'
 
 export default() => {
