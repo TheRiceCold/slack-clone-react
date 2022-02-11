@@ -65,7 +65,7 @@ const ModalName = styled.div`
   span {
     width: 8px;
     color: gray;
-    height: 38px;
+    height: 37px;
     font-size: 14px;
     padding: 10px 10px;
     background: #1A1D21;
