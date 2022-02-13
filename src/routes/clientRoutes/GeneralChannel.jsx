@@ -43,7 +43,6 @@ export default() => (
           </Name>
           <p>👋 You're here! The day just got better. This is Slack, the messaging app for teams at work. Let's get you started.</p>
           <Line>| <button>Set Up Your Profile</button></Line>
-          
         </MessageContent>
       </Message>
     </Thread>
@@ -56,6 +55,7 @@ export default() => (
 const Channel = styled.div`
   display: flex;
   color: #D1D2D3;
+  background: #1a1d21;
   flex-direction: column;
 `
 

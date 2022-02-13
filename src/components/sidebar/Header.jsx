@@ -13,8 +13,9 @@ export default() => (
 )
 
 const Header = styled.div`
-  height: 49px;
+  min-height: 49px;
   display: flex;
+  cursor: pointer;
   color: whitesmoke;
   padding-left: 16px;
   align-items: center;
@@ -23,6 +24,9 @@ const Header = styled.div`
   p {
     font-size: 18px;
     font-weight: 700;
+  }
+  :hover { 
+    background: #313843;
   }
 `
 
@@ -38,3 +42,4 @@ const NewMessage = styled(Link)`
   align-items: center;
   justify-content: center;
 `
+

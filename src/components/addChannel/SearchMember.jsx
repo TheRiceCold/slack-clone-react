@@ -1,5 +1,7 @@
+import {DEFAULT_USER_IMG} from '../../data/constants'
 import {useUsers} from '../../contexts/UsersProvider'
 import styled from 'styled-components'
+import UserAvatar from '../UserAvatar'
 import {useState} from 'react'
 import {
   uniqueArray, findObjByKey
@@ -29,7 +31,7 @@ export default({setSelected}) => {
           <Item key={i} onClick={
             () => setSelected(current => uniqueArray([...current,user.id]))
           }>
-            <img src='./frog-boi.jpg'/>
+            <UserAvatar src={DEFAULT_USER_IMG}/>
             <span>{user.email}</span>
           </Item>
         ))}
@@ -72,9 +74,6 @@ const Item = styled.div`
   img {
     height: 20px;
     margin-right: 8px;
-    border-radius: 5px;
-    background-size: 100%;
-    background-repeat: no-repeat;
   }
 `
 

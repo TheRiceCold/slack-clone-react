@@ -9,20 +9,18 @@ const UserContext = createContext()
 export const useUsers = () => useContext(UserContext)
 
 export default({children}) => {
-  const {auth} = useAuth()
   const [users, setUsers] = useState([])
+  const {auth} = useAuth()
 
-  useEffect(() => {
-    (async() => {
-      try {
-        const {data:{data}}= await axiosAPI('users', {headers: auth})
-        setUsers(data)
-      } catch(err) {
-        console.error(err)
-        setUsers(users)
-      }
-    })()
-  }, [])
+  const getAllUsers = async() => {
+    try {
+      const {data:{data}} = await axiosAPI('users', {headers: auth})
+      return data
+    } catch(e) { console.error(e.response) }
+  }
+
+  useEffect(() => getAllUsers()
+    .then(data => setUsers(data)), [])
 
   const getEmailById = id => {
     const foundUser = users.find(usr => usr.id === id)
@@ -30,8 +28,9 @@ export default({children}) => {
   }
 
   return (
-    <UserContext.Provider value={{
-      users, setUsers, getEmailById,
+    <UserContext.Provider value={{ 
+      users, setUsers,
+      getEmailById, getAllUsers
     }}>
       {children}
     </UserContext.Provider>

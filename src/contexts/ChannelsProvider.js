@@ -10,36 +10,34 @@ export const useChannels = () => useContext(ChannelsContext)
 
 export default({children}) => {
   const {auth} = useAuth()
-  const [channels, setChannels] = useState([])
-  const [currentId, setCurrentId] = useState(null)
 
-  useEffect(() => {
-    (async() => {
-      try {
-        const {data: {data}} = await axiosAPI('channel/owned', {headers: auth})
-        setChannels(data)
-      } catch(err) { console.log(err) }
-    })()
-  }, [JSON.stringify(channels)])   
-
-  const addChannel = async(body) => {
+  const createChannel = async(name, userIds) => {
     try {
-      await axiosAPI.post('channels', body, {headers: auth})
+      const res =await axiosAPI.post('channels', {
+        'name': name,
+        'user_ids': userIds
+      }, {headers: auth})
+      console.log(res, name)
     } catch(e) { console.error(e) }
+  }
+
+  const getOwnedChannels = async() => {
+    try {
+      const {data: {data}} = await axiosAPI('channel/owned', {headers: auth})
+      return data
+    } catch(err) { console.log(err) }
   }
 
   const getAllUsersChannels = async() => {
     try {
       const {data} = await axiosAPI('channels', {headers: auth})
       return data
-    } catch(e) {
-      console.error(e)
-    }
+    } catch(e) { console.error(e) }
   }
 
   const getChannelDetails = async(id) => {
     try {
-      const {data} = await axiosAPI('channels/'+id, {headers: auth})
+      const {data:{data}} = await axiosAPI('channels/'+id, {headers: auth})
       return data
     } catch(e) { console.error(e)  }
   }
@@ -51,7 +49,12 @@ export default({children}) => {
   }
 
   return (
-    <ChannelsContext.Provider value={{channels, setChannels}}>
+    <ChannelsContext.Provider value={{ 
+      createChannel,
+      getOwnedChannels,
+      getChannelDetails,
+      addMemberToChannel,
+    }}>
       {children}
     </ChannelsContext.Provider>
   )

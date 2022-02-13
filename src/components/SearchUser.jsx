@@ -1,5 +1,7 @@
 import {useMessages} from '../contexts/MessagesProvider'
+import {DEFAULT_USER_IMG} from '../data/constants'
 import {useUsers} from '../contexts/UsersProvider'
+import UserAvatar from '../components/UserAvatar'
 import {findObjByKey} from '../utils/helpers'
 import styled from 'styled-components'
 import {useState, useRef} from 'react'
@@ -14,8 +16,7 @@ export default() => {
   const handleOnChange = () => {
     const input = inputRef.current.value
     let matches = input.length > 0
-      ? findObjByKey(users, 'email', input)
-        : []
+      ? findObjByKey(users, 'email', input) : []
     setSuggestions(matches)
   }
 
@@ -25,35 +26,33 @@ export default() => {
     inputRef.current.placeholder = ''
   }
 
-  return (
-    <>
-      <Search>
-        <label>To:</label>
-        {selectedId && 
-          <Selected>
-            <Image src='./frog-boi.jpg'/>
-            <p>{getEmailById(selectedId)}</p>
-            <CgClose size={20} onClick={() => setSelectedId(null)}/>
-          </Selected>
-        } 
-        <input
-          ref={inputRef}
-          onChange={handleOnChange}
-          placeholder='#a-channel, @somebody, or somebody@example.com'
-        />
-      </Search>
-      <Suggestions show={suggestions.length}>
-        {suggestions.map((user, i) => (
-          <Item key={i} onClick={
-            () => handleClick(user.id)
-          }>
-            <img src='./frog-boi.jpg'/>
-            <p>{user.email}</p>
-          </Item>
-        ))}
-      </Suggestions>
-    </>
-  )  
+  return (<>
+    <Search>
+      <label>To:</label>
+      {selectedId && 
+        <Selected>
+          <UserAvatar src={DEFAULT_USER_IMG}/>
+          <p>{getEmailById(selectedId)}</p>
+          <CgClose size={20} onClick={() => setSelectedId(null)}/>
+        </Selected>
+      } 
+      <input
+        ref={inputRef}
+        onChange={handleOnChange}
+        placeholder='#a-channel, @somebody, or somebody@example.com'
+      />
+    </Search>
+    <Suggestions show={suggestions.length}>
+      {suggestions.map((user, i) => (
+        <Item key={i} onClick={
+          () => handleClick(user.id)
+        }>
+          <UserAvatar src={DEFAULT_USER_IMG}/>
+          <p>{user.email}</p>
+        </Item>
+      ))}
+    </Suggestions>
+  </>)  
 }
 
 const Search = styled.div`
@@ -90,14 +89,12 @@ const Selected = styled.span`
     margin: 0 8px; 
     :hover { background: #23333B; }
   }
-`
-
-const Image = styled.img`
-  height: 100%;
-  overflow: hidden;
-  margin-right: 8px;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  img {
+    height: 100%;
+    margin-right: 8px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
 `
 
 const Suggestions = styled.div`
@@ -123,9 +120,6 @@ const Item = styled.div`
   img {
     height: 20px;
     margin-right: 8px;
-    border-radius: 5px;
-    background-size: 100%;
-    background-repeat: no-repeat;
   }
 `
 

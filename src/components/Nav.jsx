@@ -1,9 +1,11 @@
+import {DEFAULT_USER_IMG} from '../data/constants'
 import {MdHelpOutline} from 'react-icons/md'
+import DropdownMenu from './DropdownMenu'
 import {CgSearch} from 'react-icons/cg'
 import styled from 'styled-components'
+import UserAvatar from './UserAvatar'
 import {BiTime} from 'react-icons/bi'
 import {useState} from 'react'
-import { DropdownMenu } from './DropdownMenu'
 
 export default() => {
   const [open, setOpen] = useState()
@@ -19,10 +21,12 @@ export default() => {
       </Main>
       <UserContent>
         <MdHelpOutline size={22}/>
-        <Image >
-          <a onClick={() => setOpen(!open)}><img src='./frog-boi.jpg'/></a>
-          {open && <DropdownMenu />}
-        </Image>  
+          {open && <DropdownMenu/>}
+          <UserAvatar 
+            size={28} 
+            src={DEFAULT_USER_IMG}
+            onClick={() => setOpen(!open)}
+          />  
       </UserContent>
     </Nav>
   )
@@ -65,7 +69,7 @@ const SearchBox = styled.div`
     padding-right: 8px;
     padding-bottom: 4px;
     background: transparent;
-    &:focus { outline: none; }
+    :focus { outline: none; }
   }
 `
 
@@ -75,16 +79,5 @@ const UserContent = styled.div`
   position: fixed;
   align-items: center;
   padding-right: 16px;
+  > img { margin-left: 8px; }
 `
-
-const Image = styled.div`
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  margin-left: 16px;
-  img { 
-    width: 100%; 
-    border-radius: 3px;
-  }
-`
-

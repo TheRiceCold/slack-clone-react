@@ -6,8 +6,8 @@ export default() => {
 
   return (
     <Container>
-      <h1>403</h1>
-      <h2>Access forbidden</h2>
+      <h1>401</h1>
+      <h2>Unauthorized</h2>
       <Button onClick={() => navigate('/')}>Go Back</Button>
     </Container> 
   )

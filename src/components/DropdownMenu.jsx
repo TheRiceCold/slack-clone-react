@@ -1,81 +1,87 @@
-import styled from "styled-components"
+import {MdSignalCellular4Bar} from 'react-icons/md'
+import {DEFAULT_USER_IMG} from '../data/constants'
+import {useAuth} from '../contexts/AuthProvider'
+import {BiChevronRight} from 'react-icons/bi'
+import {useNavigate} from 'react-router-dom'
+import {FaRegSmile} from 'react-icons/fa'
+import styled from 'styled-components'
+import UserAvatar from './UserAvatar'
   
-export function DropdownMenu() {
+export default() => {
+  const email = useAuth().auth.uid
+  const navigate = useNavigate()
+
   return (
-    <Dropdown>
+    <DropdownMenu>
       <Header>
-        <Image><img src='./frog-boi.jpg'/></Image>
+        <UserAvatar 
+          size={38}
+          src={DEFAULT_USER_IMG}
+        />
         <Details>
-          <User>Hisoka</User>
-          <Status>🟢 Active</Status>
+          <User>{email}</User>
+          <UserPressence>
+            <MdSignalCellular4Bar color={'#007a5a'}/>
+            Active
+          </UserPressence>
         </Details>
       </Header>
-      <Input>
-        <Update placeholder="☺ Update your status"/>
-      </Input>
+      <StatusBtn>
+        <FaRegSmile size={20}/>
+        Update your status
+      </StatusBtn>
       <Content>
         <MenuItem>Set yourself as away</MenuItem>
-        <MenuItem>Pause notifications</MenuItem>
+        <MenuItem>
+          <p>Pause notifications</p>
+          <BiChevronRight/>
+        </MenuItem>
       </Content>
       <Content>
         <MenuItem>Profile</MenuItem>
         <MenuItem>Preferences</MenuItem>
       </Content>
-      <Content>
-        <MenuItem>Downloads</MenuItem>
-      </Content>
       <Footer>
-        <MenuItem >Sign out of Avion School</MenuItem>
+        <MenuItem onClick={() => localStorage.removeItem('user') }>Sign out of Avion School</MenuItem>
       </Footer>  
-    </Dropdown>
+    </DropdownMenu>
   )
 }
 
-const Dropdown = styled.div`
-  position: absolute;
+const DropdownMenu = styled.div`
   top: 34px;
   right: 16px;
   width: 300px;
-  background: #2b2f33;
-  border: 1px solid #8d8d8e;
-  border-radius: 8px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  overflow: hidden;
+  display: flex; 
   cursor: default;
+  padding: 10px 0;
+  border-radius: 8px;
+  position: absolute;
+  align-items: center;
+  background: #222529;
+  flex-direction: column;
+  border: 1px solid #333639;
 `
 const Header = styled.div`
+  width: 95%;
   display: flex;
   align-items: center;
-  padding-top: 10px;
-  padding-bottom: 16px;
-  padding-left: 1rem;
-  padding-right: 1rem;
-`
-
-const Input = styled.div`
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 10px 1rem 16px;
 `
 
 const Content = styled.div`
-  border-bottom: 1px solid #8d8d8e;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #333639;
 `
 
 const Footer = styled.div`
   padding-top: 8px;
 `
-const Image = styled.div`
-  width: 38px;
-  height: 38px;
-`
 
 const Details = styled.div`
   display: flex;
-  flex-direction: column;
   padding-left: 10px;
+  flex-direction: column;
 `
 
 const User = styled.div`
@@ -83,44 +89,45 @@ const User = styled.div`
   font-weight: bold;
 `
 
-const Status = styled.div`
+const UserPressence = styled.span`
+  display: flex;
   color: #b8b9ba;
-  font-size: 12px;
+  font-size: 13px;
+  align-items: center;
+  svg { margin-right: 4px; }
 `
 
-const Update = styled.input`
+const StatusBtn = styled.button`
+  width: 85%;
+  padding: 7px;
   height: 35px;
   display: flex;
-  align-items: center;
-  padding-left: 5px;
-  padding-right: 5px;
-  width: 100%;
   color: #d1d2d3;
-  background-color: #1b1d21;
-  border: 1px solid #8d8d8e;
-  border-radius: 4px;
-  font-size: 15px;
   cursor: pointer;
-  ::placeholder{
-    color: #d1d2d3;
-  }
-  &:hover {
-    filter: brightness(1.2);
-  }
+  font-size: 15px;
+  border-radius: 4px;
+  background: #1b1d21;
+  border: 1px solid #333639;
+  :hover { border: 1px solid #c1c2c3; }
+  svg { margin-right: 16px; }
 `
 
 const MenuItem = styled.button`
+  width: 300px;
   height: 30px;
   display: flex;
-  align-items: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  background-color: transparent;
-  width: 100%;
   color: #d1d2d3;
-  font-size: 15px;
+  padding: 0 24px;
   cursor: pointer;
-  &:hover {
-    background-color: #525357;
+  font-size: 15px;
+  background: none;
+  align-items: center;
+  :hover { 
+    color: #FFF;
+    background: #1264A3;
+  }
+  p { 
+    flex: 1 1 auto;
+    text-align: left;
   }
 `

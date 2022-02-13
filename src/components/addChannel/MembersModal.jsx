@@ -1,26 +1,18 @@
 import {useChannels} from '../../contexts/ChannelsProvider'
+import {DEFAULT_USER_IMG} from '../../data/constants'
 import {useUsers} from '../../contexts/UsersProvider'
 import SearchMember from './SearchMember'
 import {CgClose} from 'react-icons/cg'
 import styled from 'styled-components'
+import UserAvatar from '../UserAvatar'
 import {Modal, Header} from './style'
 import {useState} from 'react'
 
 export default(props) => {
   const {getEmailById} = useUsers()
-  const {addChannel} = useChannels()
-  const {openNext, channelName, onClose} = props
+  const {createChannel} = useChannels()
   const [selected, setSelected] = useState([])
-
-  const handleOnClick = () => {
-    if(!selected) return
-    console.log(selected, channelName)
-
-    // addChannel({
-    //   'name': name,
-    //   'users_ids': selected
-    // }) 
-  }
+  const {openNext, channelName, onClose} = props
 
   return (<>
     {openNext &&
@@ -30,20 +22,28 @@ export default(props) => {
           <CgClose size={20} onClick={onClose}/>
         </Header>
         <Content>
-          <p># {channelName}</p>
+          <ChannelName># {channelName}</ChannelName>
           <SearchMember setSelected={setSelected}/>
           <h4>Users to be added:</h4>
           {selected && 
             selected.map((id, i) => (
               <Selected key={id}>
-                <Image src='./frog-boi.jpg'/>
+                <UserAvatar src={DEFAULT_USER_IMG}/>
                 <p>{getEmailById(id)}</p>
-                <CgClose size={18}/>
+                <CgClose size={18} onClick={() => {
+                  const filtered = selected.filter(_id => _id !== id)
+                  setSelected(filtered)
+                }}/>
               </Selected>
             ))
           }
         </Content>
-        <button onClick={handleOnClick}>Create</button>
+        <button onClick={() => {
+          createChannel(channelName, selected)
+          // location.reload()
+        }}>{
+          selected.length ? 'Create' : 'Skip for now'
+        }</button>
       </Modal>
     }
   </>)
@@ -57,11 +57,6 @@ const Content = styled.div`
   align-items: center;
   scrollbar-width: none;
   flex-direction: column;
-  p {
-    color: #b0b2b4;
-    font-size: 14px;
-    padding-bottom: 30px;   
-  }
   h4 {
     font-size: 14px;
     padding-top: 20px;
@@ -70,11 +65,19 @@ const Content = styled.div`
   :-webkit-scrollbar { display: none; }
 `
 
+const ChannelName = styled.div`
+  width: 100%;
+  color: #b0b2b4;
+  font-size: 14px;
+  padding-bottom: 30px;   
+`
+
 const Selected = styled.div`
   width: 80%;
   height: 26px;
   display: flex;
   cursor: pointer;
+  margin-bottom: 4px;
   border-radius: 4px;
   align-items: center;
   :hover { background: #1a2a34; }
@@ -83,12 +86,8 @@ const Selected = styled.div`
     margin-left: auto; 
     :hover { background: #23333B; }
   }
-`
-
-const Image = styled.img`
-  height: 100%;
-  overflow: hidden;
-  margin-right: 8px;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  img { 
+    height: 100%; 
+    margin-right: 8px;
+  }
 `

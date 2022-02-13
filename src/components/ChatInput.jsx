@@ -6,38 +6,51 @@ import {Link} from 'react-router-dom'
 
 export default(props) => {
   const {
+    handleClick, 
     input, setInput,
-    handleClick, route
-  } = props
+    route, type } = props
   const [active, setActive] = useState(false)
 
   useEffect(() => setActive(!input), [input])
+
+  const sendBtn = type === 'new' ? (
+    <Link
+      onClick={handleClick}
+      to={route ? route : ''}
+      active={active ? 0 : 1}
+    >
+      <HiPaperAirplane size={18} color='white'/>
+    </Link>
+  ) : (
+    <button 
+      onClick={handleClick} 
+      active={active ? 0 : 1} 
+    >
+      <HiPaperAirplane size={18} color='white'/>
+    </button>
+  )
 
   return (
     <ChatInput>
       <Container>
         <input 
           type='text' 
+          value={input}
           placeholder='Message here...'
           onChange={e => setInput(e.target.value)}
+          onKeyPress={e => {e.key === 'Enter' && handleClick()}}
         />
-        <Link
-          to={route ? route : ''}
-          active={active ? 1 : 0}
-          onClick={handleClick}
-        >
-          <HiPaperAirplane size={18} color='white'/>
-        </Link>
+        {sendBtn}
       </Container> 
     </ChatInput>
   )
 }
 
 const ChatInput= styled.div`
-  width: 100%;
+  width: 82vw;
+  bottom: 24px;
   padding: 0 20px;
-  margin-top: auto;
-  padding-bottom: 24px;
+  position: fixed;
 `
 
 const Container = styled.div`
@@ -47,6 +60,7 @@ const Container = styled.div`
   padding-left: 10px;
   align-items: center;
   border: 1px solid #8D8D8E;
+  background: #222529;
 
   input {
     flex: 1;
@@ -62,21 +76,34 @@ const Container = styled.div`
     width: 32px;
     border: none;
     display: flex;
-    cursor: pointer;
     margin-right: 5px;
     align-items: center;
     justify-content: center;
     background: transparent;
     transform: rotate(90deg);
-    svg {
-      opacity: ${props => 
-        props.children[1].props.
-        active ? '.25' : '1'
-      };
-      pointer-events: ${props => 
-        props.children[1].props.
-        active ? 'none' : 'auto'
-      };
-    }
+    svg { ${props => activeIcon(props)} }
+  }
+
+  button {
+    width: 32px;
+    border: none;
+    display: flex;
+    cursor: pointer;
+    margin-right: 5px;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    transform: rotate(90deg);
+    svg { ${props => activeIcon(props)} }
+  }
 `
 
+const activeIcon = props => {
+  const active = props.children[1].props.active 
+  return active ? 
+  ` opacity: 1;
+    pointer-events: auto;` : 
+    ` opacity: .25;
+      pointer-events: none;
+    `
+}

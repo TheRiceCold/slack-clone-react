@@ -9,12 +9,13 @@ export default() => (
 )
 
 const Huddle = styled.div`
-  width: 100%;
+  bottom: 0;
+  width: 238px;
   height: 50px;
   display: flex;
-  margin-top: auto;
-  position: relative;
+  position: fixed;
   padding-left: 25px;
+  background: #1d2229;
   align-items: center;
   outline: 1px solid #34383E;
   p { margin-left: 10px; }

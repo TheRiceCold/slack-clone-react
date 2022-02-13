@@ -1,38 +1,65 @@
-import SampleThread from '../../components/SampleThread'
+import {useChannels} from '../../contexts/ChannelsProvider'
+import Conversations from '../../components/Conversations'
+import {DEFAULT_USER_IMG} from '../../data/constants'
+import UserAvatar from '../../components/UserAvatar'
 import ChatInput from '../../components/ChatInput'
+import {BsPinAngleFill} from 'react-icons/bs'
+import {useParams} from 'react-router-dom'
+import {useEffect, useState} from 'react'
 import styled from 'styled-components'
+import {HiPlus} from 'react-icons/hi'
 
-const baseUrl= 'https://static.wikia.nocookie.net/theoffice/images/'
-export default() => (
-  <Channel>
-    <Header>
-      <h4>Dunder Mifflin</h4>
-      <Button>
-        <Image src={baseUrl+'6/67/Pam_Beesley.jpg'} />
-        <Image src={baseUrl+'e/e9/Character_-_JimHalpert.png'} />
-        <Image src={baseUrl+'0/0b/Angela_Martin.jpg'} />
-        15
-      </Button>
-    </Header>
-    <Search>
-      <button>+ Add a bookmark</button>
-    </Search>
-    <Thread>
-      <SampleThread/>
-    </Thread>
-    <div style={{marginTop: '0'}}>
-      <ChatInput/>
-    </div>
-  </Channel>
-)
+export default() => {
+  const {id} = useParams()
+  const [channel, setChannel] = useState()
+  const {getChannelDetails} = useChannels()
+  const [members, setMembers] = useState(0)
+
+  useEffect(() => {
+    (async() => {
+      const {
+        name, channel_members : members
+      } = await getChannelDetails(id)
+      setMembers(members)
+      setChannel(name)
+    })()
+  }, [id])
+
+  return (
+    <Channel>
+      <HeaderTop>
+        <h4>{channel}</h4>
+        <MembersBtn>
+          {members &&
+            members.map((m, i) => {
+              if (i === 3) return 
+              return <UserAvatar key={i} size={22} src={DEFAULT_USER_IMG}/>
+            })
+          }
+          <p>{members.length}</p>
+        </MembersBtn>
+      </HeaderTop>
+      <HeaderBottom>
+        <button>
+          <BsPinAngleFill/>13 Pinned
+        </button>
+        <button>
+          <HiPlus/>Add a bookmark
+        </button>
+      </HeaderBottom>
+      <Conversations id={id} type='Channel'/>
+    </Channel>
+  )
+}
 
 const Channel = styled.div`
   display: flex;
   color: #D1D2D3;
+  background: #1a1d21;
   flex-direction: column;
 `
 
-const Header = styled.div`
+const HeaderTop = styled.div`
   height: 50px;
   display: flex;
   padding-left: 20px;
@@ -43,33 +70,38 @@ const Header = styled.div`
   justify-content: space-between;
 `
 
-const Search = styled.div`
+const HeaderBottom = styled.div`
   height: 37px;
   display: flex;
-  padding-left: 20px;
+  padding-left: 13px;
   background: #1A1D21;
-  padding-right: 20px;
   align-items: center;
   outline: 1px solid #35373B;
-  justify-content: space-between;
 
   button {
     border: none;
-    color: #A0A0A2;
-    font-size: 12px;
+    display: flex;
+    color: #A4A4A6;
     cursor: pointer;
+    font-size: 13px;
     padding: 5px 5px;
     background: none;
+    margin-right: 8px;
+    align-items: center;
     :hover {
-      background-color: #232529;
+      background: #232529;
       border-radius: 4px;
+    }
+    svg { 
+      margin-right: 4px; 
+      transform: scaleX(-1);
     }
   }
 `
 
-const Button = styled.button`
+const MembersBtn = styled.button`
+  height: 28px;
   display: flex;
-  color: #A0A0A2;
   cursor: pointer;
   padding: 5px 5px;
   background: none;
@@ -77,17 +109,10 @@ const Button = styled.button`
   align-items: center;
   border: 1px solid #34383E;
   :hover { background: #232529; }
+  p { 
+    color: #A0A0A2;
+    font-size: 13px;
+    margin-left: 8px; 
+    font-weight: bold;
+  }
 `
-
-const Image = styled.img`
-  width: 25px;
-  height: 25px;
-  border-radius: 4px;
-  border: 1px solid #000;
-`
-
-const Thread = styled.div`
-  height: 70%;
-  overflow: auto;
-`
-

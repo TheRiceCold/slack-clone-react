@@ -1,26 +1,25 @@
 import {useMessages} from '../../contexts/MessagesProvider'
+import Conversations from '../../components/Conversations'
 import SearchUser from '../../components/SearchUser'
 import ChatInput from '../../components/ChatInput'
 import styled from 'styled-components'
 import {useState} from 'react'
 
 export default() => {
-  const [input, setInput] = useState('')
+  const [message, setMessage] = useState('')
   const {
     sendMessage,
-    selectedId, setSelectedId
+    setSelectedId,
+    selectedId : id,
   } = useMessages()
-  const route = selectedId ? '../direct/'+selectedId : ''
+
+  const route = id ? '../user/'+id: ''
 
   const handleClick = e => {
-    if (selectedId) {
-      sendMessage({
-        'receiver_id': selectedId,
-        'receiver_class': 'User',
-        'body': input
-      })
-      setInput('')
+    if (id) {
+      setMessage('')
       setSelectedId(null)
+      sendMessage('User', id, message)
     }
     else alert('Select a receiver')
   }
@@ -29,10 +28,12 @@ export default() => {
     <Container>
       <Heading>New message</Heading>
       <SearchUser/>
+      {id && <Conversations id={id} type='User'/>}  
       <ChatInput
+        type='new'
         route={route}
-        input={input}
-        setInput={setInput}
+        input={message}
+        setInput={setMessage}
         handleClick={handleClick}
       />
     </Container>

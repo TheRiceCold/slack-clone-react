@@ -1,24 +1,27 @@
-import { createContext, useContext} from 'react'
+import {createContext, useContext} from 'react'
 import {axiosAPI} from './axiosAPI'
 
 const AuthContext = createContext(null)
 export const useAuth = () => useContext(AuthContext)
 
 export default({children}) => {
-  const decodedToken = atob(localStorage.user || '')
-  const {auth} = decodedToken && JSON.parse(decodedToken)
+  const storedToken = localStorage.getItem('slack-clone-token')
+  const decodedToken = atob(storedToken || '')
+  const auth = decodedToken && JSON.parse(decodedToken)
 
-  const signup = async(body) => {
-    try { await axiosAPI.post('auth', body) } 
-    catch(e) { console.error(e) }
-  }
+  const signup = async(email, pass, confirmPass) => 
+    await axiosAPI.post('auth', {
+      'email': email,
+      'password': pass,
+      'password_confirmation': confirmPass
+    }) 
 
-  const login = async(body) => {
-    const res = await axiosAPI.post('auth/sign_in', body)
-    const { data: {data}, headers: auth } = res
-
-    const userToken = btoa(JSON.stringify({data, auth}))
-    localStorage.user = userToken
+  const login = async(email, pass) => {
+    const res = await axiosAPI.post('auth/sign_in', {
+      'email': email, 'password': pass
+    })
+    const token = JSON.stringify(res.headers)
+    localStorage.setItem('slack-clone-token', btoa(token))
     return res
   }
 

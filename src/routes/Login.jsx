@@ -30,15 +30,15 @@ export default() => {
       setTimeout(() => setToast({show: false}), 3000)
     } 
     else {
-      login({'email': email, 'password': password})
-      .then(() => location.reload())
-      .catch(e => {
-        setToast({ 
-          type: 'fail',
-          message: 'User does not exist',
+      login(email, password).
+        then(() => location.reload()).
+        catch(e => {
+          setToast({ 
+            type: 'fail',
+            message: 'User does not exist',
+          })
+          setTimeout(() => setToast({show: false}), 3000)
         })
-        setTimeout(() => setToast({show: false}), 3000)
-      })
     }
   }
 

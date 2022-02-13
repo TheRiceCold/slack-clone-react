@@ -6,23 +6,25 @@ import Client from './Client'
 import Login from './Login'
 
 // Client routes //
+import GeneralChannel from './clientRoutes/GeneralChannel'
+import DirectMessage from './clientRoutes/DirectMessage'
 import NewMessage from './clientRoutes/NewMessage'
 import Activity from './clientRoutes/Activity'
-import General from './clientRoutes/General'
+import SlackBot from './clientRoutes/SlackBot'
 import Channel from './clientRoutes/Channel'
 import Threads from './clientRoutes/Threads'
-import Direct from './clientRoutes/Direct'
 
 export default() => useRoutes([
   { path: '/', element: <Login/> },
   { path: 'client', element: <Client/>,
     children: [
-      { path: '', element: <General/> },
+      { path: '', element: <SlackBot/> },
       { path: 'new', element: <NewMessage/> },
       { path: 'threads', element: <Threads/> },
       { path: 'activity', element: <Activity/> },
-      { path: 'direct/:id', element: <Direct/> },
-      { path: 'channel/:id', element: <Channel/> }
+      { path: 'channel/general', element: <GeneralChannel/> },
+      { path: 'channel/:id', element: <Channel/> },
+      { path: 'user/:id', element: <DirectMessage/> },
     ]
   },
   { path: 'signup', element: <SignUp/>},

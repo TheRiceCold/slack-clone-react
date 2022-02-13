@@ -21,13 +21,29 @@ export default() => {
     const password = e.target.password.value
     const confirmPassword = e.target.confirmPassword.value
 
-    if(!email || !password || !confirmPassword) return
-
-    signup({
-      'email': email,
-      'password': password,
-      'password_confirmation': confirmPassword
-    })
+    if(!email && !password && !confirmPassword) {
+      setToast({ 
+        show: true, 
+        type: 'fail',
+        message: 'Fill in required fields',
+      })
+      setTimeout(() => setToast({show: false}), 3000)
+    } else {
+      signup(email, password, confirmPassword).
+        then(() => {
+          setToast({
+            show: true,
+            type: 'success',
+            message: 'Registered successfully',
+          })
+          setTimeout(() => setToast({show: false}), 3000)
+        }).
+        catch(e => {
+          const [message] = e.response.data.errors.full_messages
+          setToast({show: true, type: 'fail', message: message})
+          setTimeout(() => setToast({show: false}), 3000)
+        })
+    }
   }
 
   return(
@@ -44,7 +60,7 @@ export default() => {
           handleSubmit={handleSubmit}
         />
         <Link to='/'>
-          Create an account
+          I already have an account
         </Link>
         <Toast 
           type={toast.type} 
