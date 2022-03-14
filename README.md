@@ -1,6 +1,6 @@
 # React Slack Clone
 
-[Avion School](https://www.avionschool.com/) front-end messaging web application group project.
+[Avion School](https://www.avionschool.com/) front-end messaging web application group project. Open [Website](https://boring-shannon-2ecc6e.netlify.app)
 
 ## Running the project
 
