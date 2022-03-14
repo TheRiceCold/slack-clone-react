@@ -1,19 +1,20 @@
-import {SLACKBOT_IMG} from '../../data/constants'
 import {RiArrowRightSFill} from 'react-icons/ri'
 import {FiMoreVertical} from 'react-icons/fi'
 import {NavLink} from 'react-router-dom'
-import UserAvatar from '../UserAvatar'
 import styled from 'styled-components'
 import {HiPlus} from 'react-icons/hi'
 import {useState} from 'react'
 
+import {SLACKBOT_IMG} from '@/constants/constants'
+import UserAvatar from '@/styled/UserAvatar'
+
+// ListItems Component 
 export default(props) => {
   const {
     addClick, 
     itemKey, itemImg,
     label, list, path,
-    addGeneral, slackbot
-  } = props
+    addGeneral, slackbot } = props
 
   const [isRotate, setIsRotate] = useState(false)
   const [showOptions, isShowOptions] = useState(false)
@@ -53,7 +54,7 @@ export default(props) => {
             <p>Slackbot</p>
           </ListItem>
         }
-        {list && list.map((item, i) => (
+        {list?.map((item, i) => (
           <ListItem key={i} to={path+'/'+item.id}>
             {itemImg}
             <p>{item[itemKey]}</p>
@@ -64,6 +65,8 @@ export default(props) => {
   )
 }
 
+
+// Styled Components
 const Container = styled.div`
   margin-top: 10px;
 `
@@ -83,9 +86,7 @@ const Button = styled.button`
 `
 
 const List = styled.div`
-  display: ${
-    ({ isRotate }) => !isRotate && 'none'
-  }
+  display: ${({isRotate}) => !isRotate && 'none' }
 `
 
 const ListItem = styled(NavLink)`
@@ -99,8 +100,8 @@ const ListItem = styled(NavLink)`
   text-decoration: none;
   :hover { background: #313843; }
   [class*="active"] {
-    color: #FFF;
-    background: #537AA6;
+    color: #fff;
+    background: #537aa6;
   }
   p { margin-left: 8px; } 
 `
@@ -129,5 +130,3 @@ const Tab = styled.div`
     opacity: ${({ showOptions }) => showOptions ? '1' : '0'}
   }
 `
-
-

@@ -7,3 +7,10 @@ export const findObjByKey = (list, key, input) =>
     const regex = new RegExp(`${input}`,'gi')
     return item[key].match(regex)
   })
+
+export const uniqueByKey = (list, key) => 
+  list.filter(
+    (value, index, self) =>
+      index === self.findIndex(
+        t =>  t[key] === value[key])
+  )

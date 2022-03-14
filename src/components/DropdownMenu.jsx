@@ -1,12 +1,14 @@
 import {MdSignalCellular4Bar} from 'react-icons/md'
-import {DEFAULT_USER_IMG} from '../data/constants'
-import {useAuth} from '../contexts/AuthProvider'
 import {BiChevronRight} from 'react-icons/bi'
 import {useNavigate} from 'react-router-dom'
 import {FaRegSmile} from 'react-icons/fa'
 import styled from 'styled-components'
-import UserAvatar from './UserAvatar'
+
+import {DEFAULT_USER_IMG} from '@/constants/constants'
+import {useAuth} from '@/providers/AuthProvider'
+import UserAvatar from '@/styled/UserAvatar'
   
+// DropdownMenu Component
 export default() => {
   const email = useAuth().auth.uid
   const navigate = useNavigate()
@@ -48,6 +50,8 @@ export default() => {
   )
 }
 
+
+// Styled Components
 const DropdownMenu = styled.div`
   top: 34px;
   right: 16px;
@@ -123,8 +127,8 @@ const MenuItem = styled.button`
   background: none;
   align-items: center;
   :hover { 
-    color: #FFF;
-    background: #1264A3;
+    color: #fff;
+    background: #1264a3;
   }
   p { 
     flex: 1 1 auto;

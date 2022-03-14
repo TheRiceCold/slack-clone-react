@@ -1,55 +1,54 @@
-import {useMessages} from '../contexts/MessagesProvider'
-import {DEFAULT_USER_IMG} from '../data/constants'
-import UserAvatar from '../components/UserAvatar'
 import {useParams} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import styled from 'styled-components'
+import {useQuery} from 'react-query'
+
+import {useMessages} from '@/providers/MessagesProvider'
+import {DEFAULT_USER_IMG} from '@/constants/constants'
+
+import UserAvatar from '@/styled/UserAvatar'
 import ChatInput from './ChatInput'
 
 export default({id, type}) => {
-  const [sent, isSent] = useState(0)
   const [message, setMessage] = useState('')
   const {sendMessage, getMessages} = useMessages()
-  const [conversations, setConversations] = useState([])
-  console.log(conversations)
 
-  useEffect(() => {
-    (async() => {
-      const data = await getMessages(type, id) 
-      setConversations(data)
-    })()
-  }, [id, sent])
+  const {
+    data: conversations, 
+    isLoading, error 
+  } = useQuery('conversations', getMessages)
 
   const handleClick = () => {
     sendMessage(type, id, message)
-    isSent(prev => prev+1)
     setMessage('')
   }
 
-  return (<>
-    <Conversations>{
-      conversations && conversations.map(
-        ({sender: {email}, created_at, body}, i) => (
-          <Message key={i}>
-            <UserAvatar size={36} src={DEFAULT_USER_IMG}/>
-            <MessageContent>
-              <User>
-                <Email>{email}</Email>
-                <Date>
-                  {created_at.substring(0, 10)}
-                </Date>
-              </User>
-              <p>{body}</p>
-            </MessageContent>
-          </Message>
-        ))
-    }</Conversations>
-    <ChatInput
-      input={message}
-      setInput={setMessage}
-      handleClick={handleClick}
-      />
-  </>)
+  return isLoading ? 
+    <p>Loading...</p> 
+    : <>
+        <Conversations>{
+          conversations?.map(
+            ({sender: {email}, created_at, body}, i) => (
+              <Message key={i}>
+                <UserAvatar size={36} src={DEFAULT_USER_IMG}/>
+                <MessageContent>
+                  <User>
+                    <Email>{email}</Email>
+                    <Date>
+                      {created_at.substring(0, 10)}
+                    </Date>
+                  </User>
+                  <p>{body}</p>
+                </MessageContent>
+              </Message>
+            ))
+        }</Conversations>
+        <ChatInput
+          input={message}
+          setInput={setMessage}
+          handleClick={handleClick}
+          />
+      </>
 }
 
 const Conversations = styled.div`
@@ -84,9 +83,7 @@ const User = styled.span`
 `
 
 const Email = styled.span`
-  :hover {
-    text-decoration: underline;
-  }
+  :hover { text-decoration: underline; }
 `
 
 const Date = styled.span`
@@ -94,8 +91,5 @@ const Date = styled.span`
   font-size: 12px;
   margin-left: 8px;
   font-weight: 400;
-  :hover {
-    text-decoration: underline;
-  }
+  :hover { text-decoration: underline; }
 `
-

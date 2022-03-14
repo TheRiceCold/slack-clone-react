@@ -1,9 +1,11 @@
-import {useUsers} from '../contexts/UsersProvider'
 import {useRef, useEffect, useState} from 'react'
 import {HiPaperAirplane} from 'react-icons/hi'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
+import {useUsers} from '@/providers/UsersProvider'
+
+// ChatInput Components
 export default(props) => {
   const {
     handleClick, 
@@ -46,6 +48,8 @@ export default(props) => {
   )
 }
 
+
+// Styled Components
 const ChatInput= styled.div`
   width: 82vw;
   bottom: 24px;
@@ -59,27 +63,27 @@ const Container = styled.div`
   border-radius: 4px;
   padding-left: 10px;
   align-items: center;
-  border: 1px solid #8D8D8E;
+  border: 1px solid #8d8d8e;
   background: #222529;
 
   input {
     flex: 1;
     border: none;
     font-size: 13px;
+    background: none;
     color: whitesmoke;
-    background: transparent;
     :focus { outline: none; }
-    ::placeholder { color: #FFF; }
+    ::placeholder { color: #fff; }
   }
 
   a {
     width: 32px;
     border: none;
     display: flex;
+    background: none;
     margin-right: 5px;
     align-items: center;
     justify-content: center;
-    background: transparent;
     transform: rotate(90deg);
     svg { ${props => activeIcon(props)} }
   }

@@ -1,12 +1,16 @@
+// Modules
 import {Outlet, Navigate, useLocation} from 'react-router-dom'
-import MessagesProvider from '../contexts/MessagesProvider'
-import ChannelsProvider from '../contexts/ChannelsProvider'
-import UsersProvider from '../contexts/UsersProvider'
-import Sidebar from '../components/sidebar/Sidebar'
-import {useAuth} from '../contexts/AuthProvider'
 import styled from 'styled-components'
-import Nav from '../components/Nav'
+// Context Providers
+import MessagesProvider from '@/providers/MessagesProvider'
+import ChannelsProvider from '@/providers/ChannelsProvider'
+import UsersProvider from '@/providers/UsersProvider'
+import {useAuth} from '@/providers/AuthProvider'
+// Components 
+import Sidebar from '@/components/sidebar/Sidebar'
+import Nav from '@/components/Nav'
 
+// Client Component 
 export default() => {
   const {auth} = useAuth()
   const location = useLocation()
@@ -29,6 +33,8 @@ export default() => {
   )
 }
 
+
+// Styled Components
 const ClientPage = styled.div`
   width: 100%;
   height: 100vh;

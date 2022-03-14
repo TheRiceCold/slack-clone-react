@@ -1,11 +1,10 @@
-import {DEFAULT_USER_IMG} from '../../data/constants'
-import {useUsers} from '../../contexts/UsersProvider'
 import styled from 'styled-components'
-import UserAvatar from '../UserAvatar'
 import {useState} from 'react'
-import {
-  uniqueArray, findObjByKey
-} from '../../utils/helpers'
+
+import {uniqueArray, findObjByKey} from '@/utils/helpers'
+import {DEFAULT_USER_IMG} from '@/constants/constants'
+import {useUsers} from '@/providers/UsersProvider'
+import UserAvatar from '@/styled/UserAvatar'
 
 export default({setSelected}) => {
   const {users} = useUsers()
@@ -70,10 +69,9 @@ const Item = styled.div`
   align-items: center;
   padding: .5em 0 .5em 20px;
   span { font-weight: bold; }
-  :hover { background: #1264A3; }
+  :hover { background: #1264a3; }
   img {
     height: 20px;
     margin-right: 8px;
   }
 `
-

@@ -1,15 +1,16 @@
-import {useAuth} from '../contexts/AuthProvider'
 import {Link, Navigate} from 'react-router-dom'
-import {inputData} from '../data/authInputData'
-import Toast from '../components/Toast'
 import styled from 'styled-components'
-import Form from '../components/Form'
-import ClientPage from './Client'
 import {useState} from 'react'
 
-export default() => {
-  const {login, auth} = useAuth()
+import {useAuth} from '@/providers/AuthProvider'
+import slackLogo from '@/assets/slack-logo.svg'
 
+import InputField from '@/styled/InputField'
+import Toast from '@/components/Toast'
+import Button from '@/styled/Button'
+import ClientPage from './Client'
+
+export default() => {
   const [toast, setToast] = useState({
     show: false, 
     type:'fail', 
@@ -30,35 +31,32 @@ export default() => {
       setTimeout(() => setToast({show: false}), 3000)
     } 
     else {
-      login(email, password).
-        then(() => location.reload()).
-        catch(e => {
-          setToast({ 
-            type: 'fail',
-            message: 'User does not exist',
-          })
-          setTimeout(() => setToast({show: false}), 3000)
+      useAuth.login(email, password)
+      .then(() => location.reload())
+      .catch(e => {
+        setToast({ 
+          type: 'fail',
+          message: 'User does not exist',
         })
+        setTimeout(() => setToast({show: false}), 3000)
+      })
     }
   }
 
-  const loginInputData = [...inputData] 
-  loginInputData.pop()
-
-  return (!auth ?
+  return (!useAuth.auth ?
     <LoginPage>
       <Content>
-        <img src='./slack-logo.svg' alt={'slack logo'}/>
+        <img src={slackLogo} alt='slack logo'/>
         <h3>Sign in to Slack</h3>
-        <p>We suggest using the <strong>email address you use at work.</strong></p> 
-        <Form
-          btnLabel='Sign In'
-          inputData={loginInputData}
-          handleSubmit={handleSubmit}
-        />
-        <Link to='signup'>
-          Create an account
-        </Link>
+        <p>We suggest using the&nbsp;
+          <strong>email address you use at work.</strong>
+        </p> 
+        <form onSubmit={handleSubmit}>
+          <InputField id='email' type='email' placeholder='name@work-email.com'/>
+          <InputField id='password' type='password' placeholder='Enter your password'/>
+          <Button.primary>Sign In</Button.primary>
+        </form>
+        <Link to='register'>Create an account</Link>
         <Toast 
           type={toast.type} 
           show={toast.show} 
@@ -70,6 +68,8 @@ export default() => {
   )
 }
 
+
+// Styled Components
 const LoginPage = styled.div`
   width: 100%;
   height: 100vh;
@@ -77,8 +77,13 @@ const LoginPage = styled.div`
   overflow: hidden;
   color: whitesmoke;
   align-items: center;
-  background: #19191B;
+  background: #19191b;
   justify-content: center;
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 const Content = styled.div`
@@ -107,4 +112,3 @@ const Content = styled.div`
     :hover { text-decoration: underline; }
   }
 `
-

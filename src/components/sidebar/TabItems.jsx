@@ -1,8 +1,8 @@
-import styled from 'styled-components'
 import {FiMoreVertical} from 'react-icons/fi'
 import {BsChatText} from 'react-icons/bs'
 import {HiAtSymbol} from 'react-icons/hi'
 import {NavLink} from 'react-router-dom'
+import styled from 'styled-components'
 
 export default() => (
   <>

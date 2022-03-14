@@ -1,5 +1,6 @@
 import {CgClose} from 'react-icons/cg'
 import styled from 'styled-components'
+
 import {Modal, Header} from './style'
 
 export default(props) => {
@@ -41,7 +42,7 @@ export default(props) => {
     }</>)
 }
 
-export const Body = styled.div`
+const Body = styled.div`
   padding-top: 20px;
   p {
     color: #b0b2b4;
@@ -53,7 +54,7 @@ export const Body = styled.div`
   }
 `
 
-export const ModalLabel = styled.h4`
+const ModalLabel = styled.h4`
   margin-bottom: 10px;
   margin-top: 30px;
   color: #d1d2d3;
@@ -68,7 +69,7 @@ const ModalName = styled.div`
     height: 37px;
     font-size: 14px;
     padding: 10px 10px;
-    background: #1A1D21;
+    background: #1a1d21;
     border: 1px solid gray;
     border-radius: 4px 0 0 4px;
     border-right-style: none;
@@ -79,7 +80,7 @@ const NameInput = styled.input`
   width: 100%;
   color: #d1d2d3;
   padding: 10px 10px;
-  background: #1A1D21;
+  background: #1a1d21;
   border: 1px solid #8d8d8e;
   border-radius: 0 4px 4px 0;
   border-left-style: none;

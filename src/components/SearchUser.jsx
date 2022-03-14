@@ -1,11 +1,13 @@
-import {useMessages} from '../contexts/MessagesProvider'
-import {DEFAULT_USER_IMG} from '../data/constants'
-import {useUsers} from '../contexts/UsersProvider'
-import UserAvatar from '../components/UserAvatar'
-import {findObjByKey} from '../utils/helpers'
+import {CgClose} from 'react-icons/cg'
 import styled from 'styled-components'
 import {useState, useRef} from 'react'
-import {CgClose} from 'react-icons/cg'
+
+import {useMessages} from '@/providers/MessagesProvider'
+import {useUsers} from '@/providers/UsersProvider'
+
+import {DEFAULT_USER_IMG} from '@/constants/constants'
+import {findObjByKey} from '@/utils/helpers'
+import UserAvatar from '@/styled/UserAvatar'
 
 export default() => {
   const inputRef = useRef()

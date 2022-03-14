@@ -17,8 +17,7 @@ const Huddle = styled.div`
   padding-left: 25px;
   background: #1d2229;
   align-items: center;
-  outline: 1px solid #34383E;
+  outline: 1px solid #34383e;
   p { margin-left: 10px; }
   : hover { color: #fff; }
 `
-

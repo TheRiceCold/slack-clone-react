@@ -1,12 +1,14 @@
-import {useChannels} from '../../contexts/ChannelsProvider'
-import {DEFAULT_USER_IMG} from '../../data/constants'
-import {useUsers} from '../../contexts/UsersProvider'
-import SearchMember from './SearchMember'
 import {CgClose} from 'react-icons/cg'
 import styled from 'styled-components'
-import UserAvatar from '../UserAvatar'
-import {Modal, Header} from './style'
 import {useState} from 'react'
+
+import {useChannels} from '@/providers/ChannelsProvider'
+import {DEFAULT_USER_IMG} from '@/constants/constants'
+import {useUsers} from '@/providers/UsersProvider'
+
+import UserAvatar from '@/styled/UserAvatar'
+import SearchMember from './SearchMember'
+import {Modal, Header} from './style'
 
 export default(props) => {
   const {getEmailById} = useUsers()

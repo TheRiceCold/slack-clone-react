@@ -1,15 +1,15 @@
-import {DEFAULT_USER_IMG} from '../data/constants'
 import {MdHelpOutline} from 'react-icons/md'
-import DropdownMenu from './DropdownMenu'
 import {CgSearch} from 'react-icons/cg'
 import styled from 'styled-components'
-import UserAvatar from './UserAvatar'
 import {BiTime} from 'react-icons/bi'
 import {useState} from 'react'
 
+import {DEFAULT_USER_IMG} from '@/constants/constants'
+import UserAvatar from '@/styled/UserAvatar'
+import DropdownMenu from './DropdownMenu'
+
 export default() => {
   const [open, setOpen] = useState()
-
   return (
     <Nav>
       <Main>
@@ -33,18 +33,18 @@ export default() => {
 }
 
 const Nav = styled.div`
-  color: #FFF;
+  color: #fff;
   z-index: 10;
   display: flex;
   position: relative;
   align-items: center;
-  background: #0B161E;
-  outline: 1px solid #34383E;
+  background: #0b161e;
+  outline: 1px solid #34383e;
   justify-content: space-between;
   svg:hover {
     cursor: pointer;
     border-radius: 5px;
-    background: #34393F;
+    background: #34393f;
   }
 `
 
@@ -58,17 +58,17 @@ const SearchBox = styled.div`
   display: flex;
   border-radius: 6px;
   position: relative;
-  background: #3C454B;
+  background: #3c454b;
   align-items: center;
   input {
     width: 96%;
-    color: #FFF;
+    color: #fff;
     border: none;
     padding-top: 4px;
     padding-left: 8px;
     padding-right: 8px;
     padding-bottom: 4px;
-    background: transparent;
+    background: none;
     :focus { outline: none; }
   }
 `

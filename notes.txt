@@ -1,6 +1,0 @@
--- API --
-https://slack-avion.netlify.app/
-https://documenter.getpostman.com/view/61536/Tzm3oxG2
-
--- Get Response Headers using Fetch --
-https://stevemiller.dev/2019/getting-response-headers-with-javascript-fetch/

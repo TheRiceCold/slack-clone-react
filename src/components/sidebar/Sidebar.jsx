@@ -1,12 +1,15 @@
-import {useChannels} from '../../contexts/ChannelsProvider'
-import {useMessages} from '../../contexts/MessagesProvider'
-import {DEFAULT_USER_IMG} from '../../data/constants'
-import AddChannel from '../addChannel/AddChannel'
 import {useNavigate} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import UserAvatar from '../UserAvatar'
 import {CgLock} from 'react-icons/cg'
+import {useQuery} from 'react-query'
+
+import {useChannels} from '@/providers/ChannelsProvider'
+import {useMessages} from '@/providers/MessagesProvider'
+import {DEFAULT_USER_IMG} from '@/constants/constants'
+
+import AddChannel from '../addChannel/AddChannel'
+import UserAvatar from '@/styled/UserAvatar'
 import ListItems from './ListItems'
 import TabItems from './TabItems'
 import Header from './Header'
@@ -16,16 +19,10 @@ export default() => {
   const navigate = useNavigate()
   const {getRecentDMs} = useMessages()
   const {getOwnedChannels} = useChannels()
-  const [channels, setChannels] = useState([])
-  const [recentDMs, setRecentDMs] = useState([])
   const [showModal, setShowModal] = useState(false)
 
-  useEffect(() => {
-    (async() => {
-      setRecentDMs(await getRecentDMs())
-      setChannels(await getOwnedChannels())
-    })()
-  }, [])
+  const { data: recentDMs } = useQuery('recentDMs', getRecentDMs)
+  const { data: channels } = useQuery('channels', getOwnedChannels)
 
   return (
     <Sidebar>
@@ -63,9 +60,9 @@ export default() => {
 const Sidebar = styled.div`
   display: flex;
   min-height: 100vh;
-  background: #1D2229;
+  background: #1d2229;
   flex-direction: column;
-  border: 1px solid #35373B;
+  border: 1px solid #35373b;
 `
 
 const Content = styled.div`
