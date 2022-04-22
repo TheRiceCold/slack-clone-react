@@ -13,9 +13,7 @@ export default(props : Props): NextFunctionComponent  => {
   return (
     <li>
       <Link href={link}>
-        <a className={className}>
-          {label}
-        </a>
+        <a className={className}>{label}</a>
       </Link>
     </li>
   )

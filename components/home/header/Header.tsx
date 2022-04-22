@@ -9,8 +9,8 @@ import styles from "@/styles/Home.module.scss"
 const Header: NextFunctionComponent = () => (
   <header className={styles.header}>
     <Logo/>
-    <NavListRight/>
     <NavListLeft/>
+    <NavListRight/>
   </header>
 )
 

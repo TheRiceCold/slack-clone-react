@@ -4,19 +4,21 @@ import styles from "../../../styles/Home.module.scss"
 
 export default() => (
   <ul className={styles.nav_list_right}> {
-    HeaderData.right.map (
+    HeaderData.left.map (
       ({label, link}, idx) => (
-        label === "Product" ? (
-          <NavListItem 
-            key={idx} 
-            link={link} 
-            label={label}/>
-        ) : (
-          <NavListItem 
-            key={idx} 
-            link={link} 
-            label={label}/>
-          ))
-    )}
+        idx === HeaderData.left.length ? (
+          <NavListItem
+            key={idx}
+            link={link}
+            label={label}
+            className={styles.btnPrimary}/>
+          ) : (
+            <NavListItem
+              key={idx}
+              link={link}
+              label={label}/>
+          )
+      ))
+    }
   </ul>
 )

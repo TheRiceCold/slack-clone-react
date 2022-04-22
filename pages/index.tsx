@@ -3,6 +3,8 @@ import Head from "next/head"
 
 import Header from "@/home/header/Header"
 import HeroSection from "@/home/HeroSection"
+import FeatureSection from "@/home/FeatureSection"
+import BetterTomorrowSection from "@/home/BetterTomorrowSection"
 
 import styles from "@/styles/Home.module.scss"
 
@@ -18,6 +20,8 @@ const Home: NextPage = () => (
     <Header/>
     <main className={styles.main}>
       <HeroSection/>
+      <FeatureSection/>
+      <BetterTomorrowSection/>
     </main>
   </div>
 )
