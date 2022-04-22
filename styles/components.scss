@@ -1,0 +1,29 @@
+@mixin inputField {
+  padding: 10px;
+  margin-top: 10px;
+  color: whitesmoke;
+  background: none;
+  border-radius: 3px;
+  border: 1px solid grey;
+  &::placeholder { color: whitesmoke; }
+  &:hover { 
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) 
+  }
+}
+
+@mixin btnSolid {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  color: whitesmoke;
+  font-weight: bold;
+  border-radius: 3px;
+  background: #2eb67d; 
+  transition: all ease .2s;
+  &:hover { 
+    background: none;
+    outline: 1px solid #2eb67d;
+  }
+}

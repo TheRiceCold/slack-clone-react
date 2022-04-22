@@ -1,54 +1,52 @@
 # React Slack Clone
 
-[Avion School](https://www.avionschool.com/) front-end messaging web application group project. Open [Website](https://boring-shannon-2ecc6e.netlify.app)
-
-## Running the project
-
-- Clone the project and then start the project.
-
-  ```
-  git clone https://github.com/dalewaltergh/slack-clone-react
-  cd react-slack-clone
-
-  # install dependencies
-  npm i
-
-  # serve with hot reload at localhost:3000
-  npm run dev || vite dev
-
-  # build for production with minification
-  npm run build
-  ```
+[Avion School](https://www.avionschool.com/) front-end messaging web application group project.
 
 ## Project Structure
 
 ```
-src
-├── asssets
-├── components
-├── providers
-│   ├── AuthProvider.jsx
-│   ├── ChannelsProvider.jsx
-│   ├── MessagesProvider.jsx
-│   ├── SocketProvider.jsx
-│   └── UsersProvider.jsx
-├── routes
-│   ├── client
-│   │   ├── Activities.jsx
-│   │   ├── Channel.jsx
-│   │   ├── DirectMessage.jsx
-│   │   ├── NewMessage.jsx
-│   │   ├── Slackbot.jsx
-│   │   └── Threads.jsx
-│   ├── errors
-│   │   ├── Forbidden403.jsx
-│   │   ├── NotFound404.jsx
-│   │   ├── ServerError.jsx
-│   │   └── Unauthorized.jsx
-│   ├── Client.jsx
-│   ├── Login.jsx
-│   └── Register.jsx
-└── App.jsx
+components
+├── client
+│   ├── AuthPage.tsx
+│   └── thread.tsx
+└── home
+│   ├── footer
+│   │   ├── Footer.tsx
+│   │   └── FooterMenu.tsx
+│   ├── FeatureSection.tsx
+│   ├── Header.tsx
+│   └── HeroSection.tsx
+contexts
+├── AuthProvider.jsx
+├── ChannelsProvider.jsx
+├── MessagesProvider.jsx
+├── SocketProvider.jsx
+└── UsersProvider.jsx
+pages
+├── client
+│   ├── channels
+│   │   ├── index.tsx
+│   │   └── [channelid].tsx
+│   ├── users
+│   │   ├── index.tsx
+│   │   └── [userid].tsx
+│   ├── index.tsx
+│   ├── activity.tsx
+│   ├── new.tsx
+│   └── thread.tsx
+├── _app.tsx
+├── index.jsx
+├── login.jsx
+└── register.jsx
+├── public
+├── styles
+│   ├── global.css
+│   ├── Home.module.css
+│   └── Auth.module.css
+└── utils
+    ├── axios.jsx
+    ├── constants.jsx
+    └── helpers.jsx
 ```
 
 ## User Stories
@@ -62,20 +60,18 @@ src
 - User is able to receive message from other user (Direct Message)
 - User is able to receive message from his/her channels
 
-## Dependencies
+## Technologies
 
-- axios
-- react-icons
-- react-query
-- react-router-dom
-- socket.io-client
-- styled-components
+- Yarn v1.22.17
+- Next.js v12.1.4
+- React v18
+- Eslint v8.12
 
 ## Color schemes
 
 - background: #19191b
 - font-color: #f5f5f5
-- red: #e01e5a;
-- green: #2eb67d;
-- blue: #36c5f0;
-- yellow: #ecb22e;
+- red: #e01e5a
+- green: #2eb67d
+- blue: #36c5f0
+- yellow: #ecb22e
