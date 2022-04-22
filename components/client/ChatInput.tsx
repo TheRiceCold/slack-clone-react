@@ -1,4 +1,4 @@
-import {NextFunctionComponent} from 'next'
+import {NextFunctionComponent} from "next"
 import Link from "next/link"
 
 import {HiPaperAirplane} from "react-icons/hi"

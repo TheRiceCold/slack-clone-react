@@ -9,6 +9,15 @@
   &:hover { 
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) 
   }
+
+  // Chrome autocomplete
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover, 
+  &:-webkit-autofill:focus, 
+  &:-webkit-autofill:active  {
+    -webkit-text-fill-color: whitesmoke !important;
+    -webkit-box-shadow: 0 0 0 30px #1c1c1c inset !important;
+  }
 }
 
 @mixin btnSolid {
@@ -23,7 +32,8 @@
   background: #2eb67d; 
   transition: all ease .2s;
   &:hover { 
+    color: #2eb67d;
     background: none;
-    outline: 1px solid #2eb67d;
+    outline: 2px solid #2eb67d;
   }
 }
