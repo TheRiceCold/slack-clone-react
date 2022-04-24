@@ -1,0 +1,112 @@
+.channel {
+  display: flex;
+  color: #d1d2d3;
+  background: #1a1d21;
+  flex-direction: column;
+
+  header {
+    gap: 10px;
+    height: 50px;
+    display: flex;
+    padding-left: 20px;
+    background: #1a1d21;
+    padding-right: 20px;
+    align-items: center;
+    outline: 1px solid #35373b;
+
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 2px;
+    }
+  }
+
+  .bookmark {
+    height: 37px;
+    display: flex;
+    padding-left: 20px;
+    background: #1a1d21;
+    align-items: center;
+    padding-right: 20px;
+    outline: 1px solid #35373b;
+    justify-content: space-between;
+    button {
+      border: none;
+      color: #a0a0a2;
+      cursor: pointer;
+      font-size: 12px;
+      padding: 5px 5px;
+      background: none;
+      &:hover {
+        border-radius: 4px;
+        background: #232529;
+      }
+    }
+  }
+
+  .thread {
+    height: 70%;
+    overflow: auto;
+    .intro {
+      padding: 8px 20px; 
+      .slackBot {
+        display: grid;
+        row-gap: 10px;
+        padding-top: 10px;
+        grid-template-columns: 3.5% auto;
+
+        img {
+          width: 45px;
+          height: 45px;
+          border-radius: 2px;
+        }
+
+        > div {
+          padding-left: 20px;
+          padding-bottom: 20px;
+          p { padding-bottom: 20px; }
+          a {
+            color: #1d96ca;
+            text-decoration: none;
+            :hover {
+              cursor: pointer;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    .message {
+      row-gap: 10px;
+      display: grid;
+      padding: 45px 20px;
+      border-top: 1px solid #35373b;
+      grid-template-columns: 3.5% auto;
+
+      .userAvater {
+        display: grid;
+        row-gap: 10px;
+        padding-top: 10px;
+        grid-template-columns: 3.5% auto;
+        
+        img {
+          width: 45px;
+          height: 45px;
+          border-radius: 2px;
+        }
+      }
+
+      .messageContent {
+        display: flex;
+        flex-direction: column;
+        .name {
+          font-size: 15px;
+          font-weight: 700;
+          line-height: 1.4;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}

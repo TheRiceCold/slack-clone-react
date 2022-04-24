@@ -1,0 +1,63 @@
+@import 'components';
+
+.authPage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  color: whitesmoke;
+  align-items: center;
+  background: #19191b;
+  justify-content: center;
+
+  .authContent {
+    display: flex;
+    padding: 70px;
+    border-radius: 5px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    img { 
+      height: 110px; 
+      margin-bottom: 40px;
+    }
+    h3 { 
+      font-size: 40px; 
+      margin-bottom: 15px;
+    }
+    p { 
+      font-size: 16px; 
+      margin-bottom: 20px;
+    }
+    a {
+      margin-top: 25px;
+      color: whitesmoke;
+      text-decoration: none;
+      &:hover { text-decoration: underline; }
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .form_control {
+        display: grid;
+        margin-top: 1em;
+        align-items: center;
+        border: 1px solid whitesmoke;
+        border-radius: 5px;
+        grid-template-columns: 93% 7%;
+        input { @include inputField; }
+        svg:hover { 
+          color: #00b982;
+          cursor: pointer; 
+        }
+      }
+
+      input[type='submit'] { @include btnSolid; }
+    }
+  }
+}
+
