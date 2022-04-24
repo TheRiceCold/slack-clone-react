@@ -1,10 +1,14 @@
-import {HiChevronDown, HiOutlinePencilAlt} from "react-icons/hi"
-import {NextFunctionComponent} from "next"
 import Link from "next/link"
+
+import {
+  HiChevronDown, 
+  HiOutlinePencilAlt
+} from "react-icons/hi"
+import {FC} from "react"
 
 import styles from "@/styles/Client.module.scss"
 
-const SidebarHeader: NextFunctionComponent = () => (
+const SidebarHeader: FC = () => (
   <header className={styles.sidebarHeader}>
     <p>Avion School</p>
     <HiChevronDown/>

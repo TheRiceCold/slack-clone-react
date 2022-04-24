@@ -1,11 +1,12 @@
 import Link from "next/link"
-import {NextFunctionComponent} from 'next'
-import {MdHelpOutline} from 'react-icons/md'
+
+import {FC} from "react"
+import {MdHelpOutline} from "react-icons/md"
 
 import styles from "@/styles/Channel.module.scss"
 import ChatInput from "@/components/client/ChatInput"
 
-const SlackBot: NextFunctionComponent = () => (
+const SlackBot: FC = () => (
   <section className={styles.channel}>
     <header>
       <img src="slack-bot.svg" alt='slackbot'/>

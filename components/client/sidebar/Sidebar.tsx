@@ -1,20 +1,18 @@
 import styles from "@/styles/Client.module.scss"
 
-import {NextFunctionComponent} from "next"
+import {FC, useState} from "react"
+import {CgLock} from "react-icons/cg"
 
-import {useState} from 'react'
-import {CgLock} from 'react-icons/cg'
+import {useChannels} from "@/contexts/ChannelsProvider"
+import {useMessages} from "@/contexts/MessagesProvider"
 
-import {useChannels} from '@/contexts/ChannelsProvider'
-import {useMessages} from '@/contexts/MessagesProvider'
+import AddChannel from "../modal/AddChannel"
+import SidebarHeader from "./SidebarHeader"
+import ListItems from "./ListItems"
+import TabItems from "./TabItems"
+import Huddle from "./Huddle"
 
-import AddChannel from '../modal/AddChannel'
-import SidebarHeader from './SidebarHeader'
-import ListItems from './ListItems'
-import TabItems from './TabItems'
-import Huddle from './Huddle'
-
-const Sidebar: NextFunctionComponent = () => {
+const Sidebar: FC = () => {
   // const {getRecentDMs} = useMessages()
   // const {getOwnedChannels} = useChannels()
   const [showModal, setShowModal] = useState(false)

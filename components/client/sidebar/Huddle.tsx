@@ -1,6 +1,6 @@
-import {NextFunctionComponent} from 'next'
+import {FC} from "react"
 
-const Huddle: NextFunctionComponent = () => (
+const Huddle: FC = () => (
   <div></div>
 )
 

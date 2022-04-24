@@ -1,5 +1,6 @@
 import Link from "next/link"
-import {NextFunctionComponent} from "next"
+
+import {FC} from "react"
 
 import Form from "./Form"
 import {FormType} from "./types"
@@ -14,7 +15,7 @@ interface Props {
   description: string
 }
 
-export default(props: Props): NextFunctionComponent => {
+export default(props: Props): FC => {
   const {
     link, title, form,
     linkLabel, description

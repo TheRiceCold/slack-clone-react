@@ -8,7 +8,7 @@ import axios from "../utils/axios"
 const AuthContext = createContext()
 export const useAuth = () => useContext(AuthContext)
 
-export default ({children}) => {
+export default({children}) => {
   const register = async(email:string, pwd:string, pwdCofirm:string): Promise<AxioResponse> => {
     try {
       const res = await axios.post(API_PATH.REGISTER, {

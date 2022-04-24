@@ -1,14 +1,13 @@
 import styles from "@/styles/Client.module.scss"
 
-import {NextFunctionComponent} from "next"
 import Link from "next/link"
 
-import {RiArrowRightSFill} from 'react-icons/ri'
-import {FiMoreVertical} from 'react-icons/fi'
-import {HiPlus} from 'react-icons/hi'
-import {useState} from 'react'
+import {RiArrowRightSFill} from "react-icons/ri"
+import {FiMoreVertical} from "react-icons/fi"
+import {HiPlus} from "react-icons/hi"
+import {FC, useState} from "react"
 
-const ListItems:NextFunctionComponent = props => {
+const ListItems: FC = props => {
   const {
     addClick, itemKey, 
     itemImg, label, list, 

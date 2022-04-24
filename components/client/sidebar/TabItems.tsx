@@ -1,14 +1,13 @@
 import styles from "@/styles/Client.module.scss"
 
-import {NextFunctionComponent} from "next"
 import Link from "next/link"
 
-import {FiMoreVertical} from 'react-icons/fi'
-import {BsChatText} from 'react-icons/bs'
-import {HiAtSymbol} from 'react-icons/hi'
+import {FiMoreVertical} from "react-icons/fi"
+import {BsChatText} from "react-icons/bs"
+import {HiAtSymbol} from "react-icons/hi"
+import {FC} from "react"
 
-
-const TabItems:NextFunctionComponent = () => (
+const TabItems: FC = () => (
   <div className={styles.sidebarTabItems}>
     <Link href='client/threads'>
       <a>

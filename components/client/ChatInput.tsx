@@ -1,12 +1,11 @@
-import {NextFunctionComponent} from "next"
 import Link from "next/link"
 
 import {HiPaperAirplane} from "react-icons/hi"
-import {useEffect, useState} from "react"
+import {FC, useEffect, useState} from "react"
 
 import styles from "@/styles/ChatInput.module.scss"
 
-const ChatInput: NextFunctionComponent = props => {
+const ChatInput: FC = props => {
   const {
     handleClick, input, setInput, 
     route, type } = props

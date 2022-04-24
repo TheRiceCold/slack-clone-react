@@ -1,12 +1,13 @@
-import {MdSignalCellular4Bar} from 'react-icons/md'
-import {BiChevronRight} from 'react-icons/bi'
-import {FaRegSmile} from 'react-icons/fa'
+import {MdSignalCellular4Bar} from "react-icons/md"
+import {BiChevronRight} from "react-icons/bi"
+import {FaRegSmile} from "react-icons/fa"
+import {FC} from "react"
 
-import {useAuth} from '@/contexts/AuthProvider'
+import {useAuth} from "@/contexts/AuthProvider"
 
 import styles from "@/styles/Client.module.scss"
   
-export default() => {
+export default(): FC => {
   // const email = useAuth().auth.uid
 
   return (

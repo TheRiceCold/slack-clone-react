@@ -1,10 +1,11 @@
+import {FC} from "react"
 import {IoMdEye} from "react-icons/io"
 
 import {FormType, InputType} from "./types"
 
 import styles from "@/styles/Auth.module.scss"
 
-export default(props: FormType): NextFunctionComponent => {
+export default(props: FormType): FC => {
   const {btnLabel, inputList, onSubmit} = props
 
   return (

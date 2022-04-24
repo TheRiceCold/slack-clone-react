@@ -1,11 +1,11 @@
-import {useState} from 'react'
+import {FC, useState} from "react"
 
-import MembersModal from './MembersModal'
-import NameModal from './NameModal'
+import MembersModal from "./MembersModal"
+import NameModal from "./NameModal"
 
-export default({show, setShow})=> {
+export default({show, setShow}): FC => {
   const [openNext, isOpenNext] = useState(false)
-  const [channelName, setChannelName] = useState('')
+  const [channelName, setChannelName] = useState("")
 
   const onClose = () => {
     setShow(false)
