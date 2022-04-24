@@ -33,7 +33,7 @@ export default {
     },
     { 
       label: "TRY IT FOR FREE", 
-      link: "/sign_in"
+      link: "/login"
     }
   ]
 }

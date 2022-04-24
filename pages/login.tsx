@@ -1,5 +1,8 @@
 import Head from "next/head"
 import type { NextPage } from "next"
+import {useRouter} from "next/router"
+
+import FormEvent from "react"
 
 import AuthPage from "@/authPage/AuthPage"
 import {useAuth} from "../contexts/AuthProvider"
@@ -7,7 +10,8 @@ import {useAuth} from "../contexts/AuthProvider"
 import styles from "@/styles/Auth.module.scss"
 
 const Login: NextPage = () => {
-  const {login} = useAuth
+  const {login} = useAuth()
+  const router = useRouter()
 
   const form = {
     inputList: [
@@ -21,11 +25,15 @@ const Login: NextPage = () => {
       }
     ],
     btnLabel: 'Login',
-    onSubmit: async e => {
+    onSubmit: async(e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
-      const email = e.target.email.value
-      const pwd = e.target.pwd.value
-      await login(email, pwd)
+
+      const email:string = e.target.email.value
+      const pwd:string = e.target.pwd.value
+
+      const res = await login(email, pwd)
+      if (res.status === 200)
+        router.push("/client")
     }
   }
 

@@ -1,6 +1,7 @@
 import HeaderData from "./headerData"
 import NavListItem from './NavListItem'
-import styles from "../../../styles/Home.module.scss"
+
+import styles from "@/styles/Home.module.scss"
 
 export default() => (
   <ul className={styles.nav_list_left}> {
@@ -10,7 +11,8 @@ export default() => (
           <NavListItem 
             key={idx} 
             link={link} 
-            label={label}/>
+            label={label}
+            dropdown={true}/>
         ) : (
           <NavListItem 
             key={idx} 

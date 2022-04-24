@@ -1,24 +1,38 @@
-import {createContext, useContext} from 'react'
+import {createContext, useContext} from "react"
+import {isAxiosError} from "axios"
+import AxiosResponse from "axios"
 
-import {API_PATH} from '../utils/constants'
-import axios from '../utils/axios'
+import {API_PATH} from "../utils/constants"
+import axios from "../utils/axios"
 
 const AuthContext = createContext()
 export const useAuth = () => useContext(AuthContext)
 
 export default ({children}) => {
-  const register = async(email, pwd, pwdCofirm) => {
-    await axios.post(API_PATH.REGISTER, {
-      email: email, password: pwd, 
-      password_confirmation: pwdConfirm
-    })
+  const register = async(email:string, pwd:string, pwdCofirm:string): Promise<AxioResponse> => {
+    try {
+      const res = await axios.post(API_PATH.REGISTER, {
+        email: email, password: pwd, 
+        password_confirmation: pwdConfirm
+      })
+      console.log(res)
+    } catch (err) {
+      if (isAxiosError(err))
+        console.log(err.message)
+      else 
+        console.log("unexpected error: ", err)
+    }
   }
 
-  const login = async(email, password) => {
-    const {LOGIN} = API_PATH
-    try {
-      const {headers} = await axios.post(LOGIN, {email, password})
-    } catch (err) { console.log(err) }
+  const login = async(email: string, password:string): Promise<AxiosResponse> => {
+    try { 
+      return await axios.post("auth/sign_in", {email, password})
+    } catch (err) {
+      if (isAxiosError(err)) 
+        console.log(err.message)
+      else 
+        console.log("unexpected error: ", err)
+    }
   }
 
   return (

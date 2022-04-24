@@ -1,4 +1,8 @@
+import {IoMdEye} from "react-icons/io"
+
 import {FormType, InputType} from "./types"
+
+import styles from "@/styles/Auth.module.scss"
 
 export default(props: FormType): NextFunctionComponent => {
   const {btnLabel, inputList, onSubmit} = props
@@ -7,11 +11,14 @@ export default(props: FormType): NextFunctionComponent => {
     <form onSubmit={onSubmit}>
       {inputList.map(
         ({id, type, placeholder}: InputType, idx) => (
-          <input key={idx} 
-            type={type} id={id} 
-            placeholder={placeholder}/>
-        )
-      )}
+          <div key={idx} className={styles.form_control}>
+            <input key={idx} 
+              type={type} id={id} 
+              placeholder={placeholder}/>
+            {type === "password" && <IoMdEye onClick={e => console.log(e)}/>}
+            {/* <IoMdEyeOff/> */}
+          </div>
+        ))}
       <input type="submit" value={btnLabel}/>
     </form>
   )

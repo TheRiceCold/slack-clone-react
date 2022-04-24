@@ -1,14 +1,10 @@
 @mixin inputField {
+  outline: 0;
+  border: none;
   padding: 10px;
-  margin-top: 10px;
-  color: whitesmoke;
   background: none;
-  border-radius: 3px;
-  border: 1px solid grey;
+  color: whitesmoke;
   &::placeholder { color: whitesmoke; }
-  &:hover { 
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) 
-  }
 
   // Chrome autocomplete
   &:-webkit-autofill,

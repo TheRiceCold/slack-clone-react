@@ -1,20 +1,29 @@
+import Link from "next/link"
 import {NextFunctionComponent} from "next"
+
+import {FcGoogle} from "react-icons/fc"
+
 import styles from "@/styles/Home.module.scss"
 
 const HeroSection: NextFunctionComponent = () => (
   <section className={styles.hero_section}>
     <article className={styles.hero_content}>
-      <h1>Slack is your <br/> digital HQ</h1>
+      <h1>Great teamwork starts 
+        <br/> with a <span>digital HQ</span>
+      </h1>
       <p>
         Transform the way you work with one place for <br/>
         everyone and everything you need to get stuff done.
       </p>
-      <button className={styles.btn_solid_green}>
-        TRY FOR FREE
-      </button>
-      <button className={styles.btn_solid_blue}>
-        SIGN UP WITH GOOGLE
-      </button>
+      <div className={styles.hero_buttons}>
+        <Link href="/register">
+          <a>sign up with email</a>
+        </Link>
+        <button>
+          <FcGoogle size={28}/>
+          <span>sign up with google</span>
+        </button>
+      </div>
     </article>
     <img src="/slack-campaign-hero.png" alt="hero section image"/>
   </section>
