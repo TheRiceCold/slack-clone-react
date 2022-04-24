@@ -7,7 +7,7 @@ import {BsChatText} from "react-icons/bs"
 import {HiAtSymbol} from "react-icons/hi"
 import {FC} from "react"
 
-const TabItems: FC = () => (
+export default(): FC<any> => (
   <div className={styles.sidebarTabItems}>
     <Link href='client/threads'>
       <a>
@@ -27,5 +27,3 @@ const TabItems: FC = () => (
     </div>
   </div>
 )
-
-export default TabItems

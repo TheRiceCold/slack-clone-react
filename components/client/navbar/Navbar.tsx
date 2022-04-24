@@ -7,7 +7,7 @@ import DropdownMenu from "@/components/client/navbar/DropdownMenu"
 
 import styles from "@/styles/Client.module.scss"
 
-export default(): FC => {
+export default(): FC<any> => {
   const [open, setOpen] = useState()
 
   return (

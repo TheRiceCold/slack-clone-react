@@ -7,7 +7,7 @@ import {useAuth} from "@/contexts/AuthProvider"
 
 import styles from "@/styles/Client.module.scss"
   
-export default(): FC => {
+export default(): FC<any> => {
   // const email = useAuth().auth.uid
 
   return (

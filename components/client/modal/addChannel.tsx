@@ -3,7 +3,7 @@ import {FC, useState} from "react"
 import MembersModal from "./MembersModal"
 import NameModal from "./NameModal"
 
-export default({show, setShow}): FC => {
+export default({show, setShow}): FC<any> => {
   const [openNext, isOpenNext] = useState(false)
   const [channelName, setChannelName] = useState("")
 

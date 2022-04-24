@@ -5,7 +5,7 @@ import {FormType, InputType} from "./types"
 
 import styles from "@/styles/Auth.module.scss"
 
-export default(props: FormType): FC => {
+export default(props): FC<FormType> => {
   const {btnLabel, inputList, onSubmit} = props
 
   return (

@@ -15,7 +15,7 @@ interface Props {
   description: string
 }
 
-export default(props: Props): FC => {
+export default(props): FC<Props> => {
   const {
     link, title, form,
     linkLabel, description
