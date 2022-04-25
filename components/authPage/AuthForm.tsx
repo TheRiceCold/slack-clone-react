@@ -1,17 +1,17 @@
-import {FC} from "react"
 import {IoMdEye} from "react-icons/io"
+import {FC} from "react"
 
-import {FormType, InputType} from "./types"
+import {AuthFormType} from "@/types/authTypes"
 
 import styles from "@/styles/Auth.module.scss"
 
-export default(props): FC<FormType> => {
-  const {btnLabel, inputList, onSubmit} = props
+const AuthForm: FC<AuthFormType> = props => {
+  const {inputList, btnLabel, onSubmit} = props
 
   return (
     <form onSubmit={onSubmit}>
       {inputList.map(
-        ({id, type, placeholder}: InputType, idx) => (
+        ({id, type, placeholder}, idx) => (
           <div key={idx} className={styles.form_control}>
             <input key={idx} 
               type={type} id={id} 
@@ -24,3 +24,5 @@ export default(props): FC<FormType> => {
     </form>
   )
 }
+
+export default AuthForm

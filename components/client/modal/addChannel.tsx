@@ -1,15 +1,22 @@
-import {FC, useState} from "react"
+import {FC, useState, Dispatch} from "react"
 
 import MembersModal from "./MembersModal"
 import NameModal from "./NameModal"
 
-export default({show, setShow}): FC<any> => {
-  const [openNext, isOpenNext] = useState(false)
-  const [channelName, setChannelName] = useState("")
+import styles from "@/styles/Client.module.scss"
+
+interface IProps {
+  show: boolean
+  setShow: Dispatch<boolean>
+}
+
+const AddChannel: FC<IProps> = ({show, setShow}) => {
+  const [isOpenNext, setOpenNext] = useState<boolean>(false)
+  const [channelName, setChannelName] = useState<string>("")
 
   const onClose = () => {
     setShow(false)
-    isOpenNext(false)
+    setOpenNext(false)
   }
 
   return (<>
@@ -17,17 +24,19 @@ export default({show, setShow}): FC<any> => {
       <div className={styles.overlay} onClick={onClose}>
         <NameModal 
           onClose={onClose}
-          openNext={openNext} 
           isOpenNext={isOpenNext} 
+          setOpenNext={setOpenNext} 
           channelName={channelName}
           setChannelName={setChannelName}
         />
         <MembersModal 
           onClose={onClose} 
-          openNext={openNext}
+          isOpenNext={isOpenNext}
           channelName={channelName}
         />
       </div>
     }
   </>)
 }
+
+export default AddChannel

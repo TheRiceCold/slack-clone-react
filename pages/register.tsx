@@ -1,5 +1,8 @@
 import Head from "next/head"
-import type { NextPage } from "next"
+import type {NextPage} from "next"
+import {useRouter} from "next/router"
+
+import {FormEvent} from "react"
 
 import AuthPage from "@/authPage/AuthPage"
 import {useAuth} from "../contexts/AuthProvider"
@@ -7,7 +10,8 @@ import {useAuth} from "../contexts/AuthProvider"
 import styles from "@/styles/Auth.module.scss"
 
 const Register: NextPage = () => {
-  const {login} = useAuth
+  const {register} = useAuth()
+  const router = useRouter()
 
   const form = {
     btnLabel: 'Register',
@@ -26,8 +30,17 @@ const Register: NextPage = () => {
         placeholder: 'Confirm password'
       }
     ],
-    onSubmit: async e => {
+    onSubmit: async(e: FormEvent) => {
       e.preventDefault()
+      const target = e.target as HTMLFormElement
+
+      const email = target.email.value
+      const pwd = target.pwd.value
+      const confirmPwd = target.confirmPwd.value
+
+      const res = await register(email, pwd, confirmPwd)
+      if (res.status === 200)
+        router.push("/client")
     }
   }
 

@@ -1,17 +1,22 @@
 import Link from "next/link"
-import {NextFunctionComponent} from "next"
+import {FC} from "react"
 
-import companies from "./companiesData"
+import {Company} from "@/types/homeTypes"
+import {companiesData} from "@/data/homeData"
 import styles from "@/styles/Home.module.scss"
 
-const FeatureSection: NextFunctionComponent = () => (
-  <section className={styles.feature_section}>
-  {companies.map(({img, link}, i) => (
-    <Link href={link} key={i}>
-      <a><img src={`/companies/${img}.png`} alt={img+ " image"}/></a>
-    </Link>
-  ))}
-  </section>
-)
+const FeatureSection: FC = () => {
+  const data: Company[] = companiesData
+
+  return (
+    <section className={styles.feature_section}>
+    {data.map(({img, link}, idx: any) => (
+      <Link href={link} key={idx}>
+        <a><img src={`/companies/${img}.png`} alt={img+ " image"}/></a>
+      </Link>
+    ))}
+    </section>
+  )
+}
 
 export default FeatureSection

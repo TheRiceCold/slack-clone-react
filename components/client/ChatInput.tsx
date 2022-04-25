@@ -1,32 +1,37 @@
 import Link from "next/link"
 
 import {HiPaperAirplane} from "react-icons/hi"
-import {FC, useEffect, useState} from "react"
+import {
+  FC, MouseEvent, Dispatch,
+  useEffect, useState } from "react"
 
 import styles from "@/styles/ChatInput.module.scss"
 
-const ChatInput: FC = props => {
+interface IProps {
+  handleClick: () => void
+  setInput: Dispatch<string>
+  input: string
+  route: string
+  type: string
+}
+
+const ChatInput: FC<IProps> = props => {
   const {
-    handleClick, input, setInput, 
-    route, type } = props
+    handleClick, input, 
+    setInput, route, type } = props
 
   const [active, setActive] = useState(false)
 
   useEffect(() => setActive(!input), [input])
 
   const sendBtn = type === 'new' ? (
-    <Link
-      onClick={handleClick}
-      to={route ? route : ''}
-      active={active ? 0 : 1}
-    >
-      <HiPaperAirplane size={18} color='#fff'/>
+    <Link href="/">
+      <a onClick={handleClick}>
+        <HiPaperAirplane size={18} color='#fff'/>
+      </a>
     </Link>
   ) : (
-    <button 
-      onClick={handleClick} 
-      active={active ? 0 : 1} 
-    >
+    <button onClick={handleClick}>
       <HiPaperAirplane size={18} color='#fff'/>
     </button>
   )

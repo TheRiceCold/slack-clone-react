@@ -5,9 +5,20 @@ import Link from "next/link"
 import {RiArrowRightSFill} from "react-icons/ri"
 import {FiMoreVertical} from "react-icons/fi"
 import {HiPlus} from "react-icons/hi"
-import {FC, useState} from "react"
+import {FC, ReactNode, useState} from "react"
 
-const ListItems: FC = props => {
+interface IListItems {
+  path: string
+  label: string
+  itemKey: string
+  slackbot?: boolean
+  addGeneral?: boolean
+  list?: any
+  addClick: () => void 
+  itemImg?: ReactNode
+}
+
+const ListItems: FC<IListItems> = props => {
   const {
     addClick, itemKey, 
     itemImg, label, list, 
@@ -19,8 +30,6 @@ const ListItems: FC = props => {
   return (
     <div className={styles.sidebar_list_items}>
       <div
-        isRotate={isRotate} 
-        showOptions={showOptions}
         className={styles.sidebar_tab_item}
         onMouseEnter={() => isShowOptions(true)}
         onMouseLeave={() => isShowOptions(false)}>
@@ -39,7 +48,7 @@ const ListItems: FC = props => {
           </button>
         </div>
       </div>
-      <ul isRotate={isRotate}>
+      <ul>
         {addGeneral && 
           <Link href="channel/general">
             <a className={styles.sidebar_list_item}>
@@ -50,13 +59,14 @@ const ListItems: FC = props => {
         {slackbot && 
           <Link href="/client">
             <a className={styles.sidebar_list_item}>
-              <img src="/slack-bot.svg" className={styles.user_avatar}/>
+              <img src="/slack-bot.svg" alt="slackbot image"
+                className={styles.user_avatar} />
               <p>Slackbot</p>
             </a>
           </Link>
         }
-        {list?.map((item, i) => (
-          <Link key={i} href={path+'/'+item.id}>
+        {list?.map((item: any, idx: any) => (
+          <Link key={idx} href={path+'/'+item.id}>
             <a className={styles.sidebar_list_item}>
               {itemImg}
               <p>{item[itemKey]}</p>

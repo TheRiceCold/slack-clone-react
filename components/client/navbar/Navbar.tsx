@@ -7,8 +7,8 @@ import DropdownMenu from "@/components/client/navbar/DropdownMenu"
 
 import styles from "@/styles/Client.module.scss"
 
-export default(): FC<any> => {
-  const [open, setOpen] = useState()
+const Navbar: FC = () => {
+  const [open, setOpen] = useState<boolean>(false)
 
   return (
     <header className={styles.navbar}>
@@ -23,8 +23,8 @@ export default(): FC<any> => {
         <MdHelpOutline size={22}/>
           {open && <DropdownMenu/>}
           <img
-            src="/default-user.svg"
-            height="28"
+            src="/default-user.svg" height="28" 
+            alt="default user image"
             className={styles.userAvatar}
             onClick={() => setOpen(!open)}
           />  
@@ -32,3 +32,5 @@ export default(): FC<any> => {
     </header>
   )
 }
+
+export default Navbar

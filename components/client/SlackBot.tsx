@@ -21,39 +21,38 @@ const SlackBot: FC = () => (
         <div className={styles.slackBot}>
           <img src="default-user.svg" alt='user avatar'/>
           <div>
-            <p>You're here! Hello!</p>
+            <p>{"You're here! Hello!"}</p>
             <p>
               To learn all about using Slack, click the&nbsp;
               <MdHelpOutline size={20}/>&nbsp;
               help icon in the top right corner of the app. (Or, you can visit the&nbsp;
-              <Link href='https://slack.com/help' target='_blank'>
-                <a>Help Center</a>
+              <Link href="https://slack.com/help">
+                <a target="_blank">Help Center</a>
               </Link> on the web!)
             </p>
-            <p>
-              I, however, am not a human. Just a bot (a simple bot, with only a few tricks up my metaphorical sleeve).
-              But I'm still happy you're here!
-            </p>
+            <p>{`I, however, am not a human. Just a bot 
+                (a simple bot, with only a few tricks up my metaphorical sleeve). 
+                But I'm still happy you're here!`}</p>
           </div>
         </div>
       </article>
       <article className={styles.message}>
         <div className={styles.userAvatar}>
-          <img src="/slack-bot.svg"/>
+          <img src="/slack-bot.svg" alt="slackbot image"/>
         </div>
         <div className={styles.messageContent}>
           <span className={styles.name}>
             Slackbot
             <span>7:33 AM</span>
           </span>
-          <p>👋 You're here! The day just got better. This is Slack,&nbsp;
-            the messaging app for teams at work. Let's get you started.</p>
+          <p>{`👋 You're here! The day just got better. This is Slack, 
+            the messaging app for teams at work. Let's get you started.`}</p>
           <span>| <button>Set Up Your Profile</button></span>
         </div>
       </article>
     </section>
     <div style={{marginTop: '0'}}>
-      <ChatInput/>
+      {/* <ChatInput/> */}
     </div>
   </section>
 )

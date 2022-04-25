@@ -1,7 +1,8 @@
+import {FC} from "react"
 import Link from "next/link"
 import styles from "../../../styles/Home.module.scss"
 
-export default() => (
+const Logo: FC = () => (
   <div className={styles.logo}>
     <Link href="/">
       <a>
@@ -14,3 +15,5 @@ export default() => (
     </Link>
   </div>  
 )
+
+export default Logo

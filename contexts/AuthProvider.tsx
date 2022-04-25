@@ -1,37 +1,35 @@
-import {createContext, useContext} from "react"
-import {isAxiosError} from "axios"
-import AxiosResponse from "axios"
+import {FC, createContext, useContext} from "react"
+import {AxiosResponse} from "axios"
 
-import {API_PATH} from "../utils/constants"
 import axios from "../utils/axios"
 
-const AuthContext = createContext()
-export const useAuth = () => useContext(AuthContext)
+interface IAuthContext {
+  login: (email: string, password: string) => AxiosResponse
+  register: (email: string, pwd: string, 
+    password_confirmation: string) => AxiosResponse
+}
 
-export default({children}) => {
-  const register = async(email:string, pwd:string, pwdCofirm:string): Promise<AxioResponse> => {
+const AuthContext = createContext({})
+export const useAuth = () => useContext(AuthContext) as IAuthContext
+
+const AuthProvider: FC = ({children}) => {
+  const register = async(
+    email: string, password: string, 
+    password_confirmation: string) => {
     try {
-      const res = await axios.post(API_PATH.REGISTER, {
-        email: email, password: pwd, 
-        password_confirmation: pwdConfirm
-      })
-      console.log(res)
-    } catch (err) {
-      if (isAxiosError(err))
-        console.log(err.message)
-      else 
-        console.log("unexpected error: ", err)
+      await axios.post("auth", {email, password, password_confirmation})
+    } catch (err: any) {
+      console.log(err.message)
+      // console.log("unexpected error: ", err)
     }
   }
 
-  const login = async(email: string, password:string): Promise<AxiosResponse> => {
+  const login = async(email: string, password: string) => {
     try { 
       return await axios.post("auth/sign_in", {email, password})
-    } catch (err) {
-      if (isAxiosError(err)) 
-        console.log(err.message)
-      else 
-        console.log("unexpected error: ", err)
+    } catch (err: any) {
+      console.log(err.message)
+      // console.log("unexpected error: ", err)
     }
   }
 
@@ -41,3 +39,5 @@ export default({children}) => {
     </AuthContext.Provider>
   )
 }
+
+export default AuthProvider

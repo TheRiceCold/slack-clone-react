@@ -3,8 +3,10 @@ import type { AppProps } from "next/app"
 
 import AuthProvider from "../contexts/AuthProvider"
 
-export default({Component, pageProps}: AppProps) => (
+const Slack = ({Component, pageProps}: AppProps) => (
   <AuthProvider>
     <Component {...pageProps}/>
   </AuthProvider>
 ) 
+
+export default Slack

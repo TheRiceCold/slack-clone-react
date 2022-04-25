@@ -1,16 +1,17 @@
 import Link from "next/link"
-import {NextFunctionComponent} from "next"
+import {FC} from "react"
 
 import {FaPlay} from "react-icons/fa"
 
 import styles from "@/styles/Home.module.scss"
 
-const BetterTomorrowSection: NextFunctionComponent = () => (
+const BetterTomorrowSection: FC = () => (
   <section className={styles.better_tomorrow_section}>
     <article className={styles.video_showcase}>
       <Link href="/">
         <a>
-          <img src="/better-tomorrow-thumbnail.jpg"/>
+          <img src="/better-tomorrow-thumbnail.jpg" 
+            alt="better tomorrow thumbnail"/>
           <FaPlay size={36}/>          
         </a>     
       </Link>

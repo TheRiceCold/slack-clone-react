@@ -1,18 +1,16 @@
+import {FC} from "react"
 import Link from "next/link"
-import {NextFunctionComponent} from 'next'
-
 import {BiChevronDown} from "react-icons/bi"
 
-interface Props {
+interface INavListItem {
   link: string
   label: string
   className?: string
+  dropdown?: boolean
 }
 
-export default(props : Props): NextFunctionComponent  => {
-  const {
-    link, label, 
-    className, dropdown} = props
+const NavListItem: FC<INavListItem> = props => {
+  const { link, label, className, dropdown} = props
 
   return (
     <li>
@@ -23,3 +21,5 @@ export default(props : Props): NextFunctionComponent  => {
     </li>
   )
 }
+
+export default NavListItem

@@ -1,32 +1,30 @@
 import Link from "next/link"
-
 import {FC} from "react"
 
-import Form from "./Form"
-import {FormType} from "./types"
+import {AuthFormType} from "@/types/authTypes"
+import AuthForm from "./AuthForm"
 
 import styles from "@/styles/Auth.module.scss"
 
-interface Props {
-  form: FormType
+export interface IProps {
+  form: AuthFormType
   link: string
   title: string
   linkLabel: string
   description: string
 }
 
-export default(props): FC<Props> => {
+const AuthPage: FC<IProps> = props => {
   const {
     link, title, form,
-    linkLabel, description
-  } = props
+    linkLabel, description } = props
 
   return (
     <section className={styles.authContent}>
       <img src="/slack-logo.svg" alt="slack logo"/>
       <h3>{title}</h3>
       <p>{description}</p> 
-      <Form 
+      <AuthForm 
         btnLabel={form.btnLabel} 
         inputList={form.inputList} 
         onSubmit={form.onSubmit}
@@ -37,3 +35,5 @@ export default(props): FC<Props> => {
     </section>
   )
 }
+
+export default AuthPage

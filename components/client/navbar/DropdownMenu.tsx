@@ -7,14 +7,15 @@ import {useAuth} from "@/contexts/AuthProvider"
 
 import styles from "@/styles/Client.module.scss"
   
-export default(): FC<any> => {
+const DropdownMenu: FC = () => {
   // const email = useAuth().auth.uid
 
   return (
     <article className={styles.dropdownMenu}>
       <nav> 
         <img src="/default-user.svg"
-          className={styles.userAvatar}/>
+          className={styles.userAvatar}
+          alt="default user image" />
         <div className={styles.details}>
           <p>Email</p>
           <span>
@@ -50,3 +51,5 @@ export default(): FC<any> => {
     </article>
   )
 }
+
+export default DropdownMenu

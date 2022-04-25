@@ -1,63 +1,57 @@
-import {createContext, useContext} from 'react'
+import {FC, Context, createContext, useContext} from "react"
+import {AxiosResponse} from "axios"
 
-import {API_PATH} from '../utils/constants'
 import {useAuth} from './AuthProvider'
-import axios from '../utils/axios'
+import axios from '@/utils/axios'
 
-const ChannelsContext = createContext()
-export const useChannels = () => useContext(ChannelsContext)
+interface IChannels {
+  // createChannel: (name: string, user_ids: Number[]) => Promise<AxiosResponse>
+  // getOwnedChannels: () => Promise<AxiosResponse>
+  // getAllUsersChannels: () => Promise<AxiosResponse>
+  // getChannelDetails: (id: Number) => Promise<AxiosResponse>
+  // addMemberToChannel: (body: string) => Promise<AxiosResponse>
+}
 
-export default ({children}) => {
-  const {auth} = useAuth()
+const ChannelsContext = createContext({})
+export const useChannels = () => useContext(ChannelsContext) as IChannels
 
-  const createChannel = async(name, user_ids) => {
-    await axios.post(
-      API_PATH.CHANNELS, 
-      {name, user_ids}, 
-      {headers: auth}
-    )
-  }
+const ChannelsProvider: FC = ({children}) => {
+  // const {auth} = useAuth()
 
-  const getOwnedChannels = async() => {
-    const {data: {data}} = await axios(
-      API_PATH.CHANNELS_OWNED, 
-      {headers: auth}
-    )
-    return data
-  }
+  // const createChannel = async(name, user_ids) => 
+  //   await axios.post("channels", {name, user_ids}, {headers: auth})
+  //
+  // const getOwnedChannels = async() => {
+  //   const {data: {data}} = await axios(
+  //     "channel/owned", {headers: auth}
+  //   )
+  //   return data
+  // }
 
-  const getAllUsersChannels = async() => {
-    const {data} = await axios(
-      API_PATH.CHANNELS, 
-      {headers: auth}
-    )
-    return data
-  }
+  // const getAllUsersChannels = async() => {
+  //   const {data} = await axios("channels", {headers: auth})
+  //   return data
+  // }
 
-  const getChannelDetails = async id => {
-    const {data:{data}} = await axios(
-      API_PATH.CHANNELS+'/'+id, 
-      {headers: auth}
-    )
-    return data
-  }
+  // const getChannelDetails = async id => {
+  //   const {data:{data}} = await axios("channels/"+id, {headers: auth})
+  //   return data
+  // }
 
-  const addMemberToChannel = async body => {
-    await axios.post(
-      API_PATH.CHANNELS_ADD_MEMBER, 
-      body, {headers: auth}
-    )
-  }
+  // const addMemberToChannel = async body => 
+  //   await axios.post("channel/add_member", body, {headers: auth})
 
   return (
     <ChannelsContext.Provider value={{ 
-      createChannel,
-      getOwnedChannels,
-      getChannelDetails,
-      addMemberToChannel,
-      getAllUsersChannels
+      // createChannel,
+      // getOwnedChannels,
+      // getChannelDetails,
+      // addMemberToChannel,
+      // getAllUsersChannels
     }}>
       {children}
     </ChannelsContext.Provider>
   )
 }
+
+export default ChannelsProvider

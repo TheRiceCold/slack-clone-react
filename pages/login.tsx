@@ -2,7 +2,7 @@ import Head from "next/head"
 import type { NextPage } from "next"
 import {useRouter} from "next/router"
 
-import FormEvent from "react"
+import {FormEvent} from "react"
 
 import AuthPage from "@/authPage/AuthPage"
 import {useAuth} from "../contexts/AuthProvider"
@@ -25,11 +25,12 @@ const Login: NextPage = () => {
       }
     ],
     btnLabel: 'Login',
-    onSubmit: async(e: FormEvent<HTMLFormElement>) => {
+    onSubmit: async(e: FormEvent) => {
       e.preventDefault()
+      const target = e.target as HTMLFormElement
 
-      const email:string = e.target.email.value
-      const pwd:string = e.target.pwd.value
+      const email = target.email.value
+      const pwd = target.pwd.value
 
       const res = await login(email, pwd)
       if (res.status === 200)
