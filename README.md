@@ -9,7 +9,7 @@
     <a href="https://www.avionschool.com/">Avion School</a>
     <span>front-end messaging web application group project.</span>
     <br/>
-    <a href="https://github.com/dwghdev/slack-clone-react">View Demo</a>
+    <a href="https://slack-clone-react-omega.vercel.app">View Demo</a>
     ·
     <a href="https://github.com/dwghdev/slack-clone-react">Report Bug</a>
     ·
