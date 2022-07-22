@@ -21,7 +21,6 @@
   <summary>Technologies</summary>
     <ul>
       <li>React v18</li>
-      <li>Nextjs v12.1.4</li>
       <li>TypeScript v4.6.3</li>
       <li>Axios v0.26.1</li>
       <li>Yarn v1.22.17</li>
