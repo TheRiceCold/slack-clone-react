@@ -1,0 +1,16 @@
+@import "../variables"
+
+@import "header/header"
+@import "companies"
+@import "hero/hero"
+@import "better_tomorrow/better_tomorrow"
+@import "footer"
+
+.main 
+  width: 100vw
+  color: text_color
+  @include hero
+  @include header
+  @include companies
+  @include better_tomorrow
+  @include footer

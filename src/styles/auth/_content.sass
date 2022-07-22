@@ -1,0 +1,25 @@
+@import './form'
+
+@mixin auth_page_content
+  display: flex
+  padding: 70px
+  border-radius: 5px
+  align-items: center
+  flex-direction: column
+  justify-content: center
+  img 
+    height: 110px
+    margin-bottom: 15px
+  h3
+    font-size: 40px
+    margin-bottom: 15px
+  p
+    font-size: 16px
+    margin-bottom: 20px
+  a 
+    margin-top: 25px
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+  form
+    @include form

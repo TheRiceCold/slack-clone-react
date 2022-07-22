@@ -1,0 +1,12 @@
+@import "content"
+@import "thumbnail"
+
+@mixin better_tomorrow
+  section.better_tomorrow
+    color: $white
+    display: flex
+    padding: 5em 0
+    align-items: center
+    border-bottom: 1px solid $dark_gray
+    @include thumbnail
+    @include content

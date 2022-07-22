@@ -1,0 +1,25 @@
+@mixin header
+  .sidebar_header
+    color: $white
+    display: flex
+    cursor: pointer
+    min-height: 49px
+    padding-left: 16px
+    align-items: center
+    margin-bottom: 20px
+    outline: 1px solid $dark_gray
+    p 
+      font-size: 18px
+      font-weight: 700
+    &:hover
+      background: $dark_gray
+    .new_message
+      width: 32px
+      height: 32px
+      display: flex 
+      margin-left: auto
+      background: $white
+      margin-right: 16px
+      border-radius: 50%
+      align-items: center
+      justify-content: center

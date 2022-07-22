@@ -1,0 +1,13 @@
+@import "item"
+
+@mixin tab_items
+  .tab_item
+    @include tab_item
+    color: $light_gray
+    text-decoration: none 
+    &:hover 
+      background: $dark_gray
+  .more_items
+    @include tab_item 
+    &:hover
+      color: $white

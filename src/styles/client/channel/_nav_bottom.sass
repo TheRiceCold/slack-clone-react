@@ -1,0 +1,25 @@
+@mixin nav_bottom
+  .channel_nav_bottom
+    height: 37px 
+    display: flex
+    padding-left: 20px
+    align-items: center
+    padding-right: 20px
+    justify-content: space-between
+    border-bottom: 1px solid $dark_gray
+    button
+      border: none
+      padding: 5px
+      color: $gray
+      display: flex
+      cursor: pointer
+      font-size: 13px
+      background: none
+      margin-right: 8px
+      align-items: center
+      &:hover
+        background: $dim_gray
+        border-radius: 4px
+      svg
+        margin-right: 4px
+        transform: scaleX(-1)

@@ -1,0 +1,15 @@
+@import "../variables"
+@import "navbar/navbar"
+@import "sidebar/sidebar"
+@import "channel/channel"
+
+main.client_page
+  width: 100%
+  height: 100vh
+  display: grid
+  overflow: hidden
+  grid-template-rows: 38px auto
+
+  @include navbar
+  @include sidebar
+  @include channel

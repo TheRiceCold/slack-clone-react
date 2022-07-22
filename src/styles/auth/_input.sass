@@ -1,0 +1,16 @@
+@mixin input_field
+  outline: 0
+  border: none
+  padding: 10px
+  background: none
+  color: $white
+  &::placeholder 
+    color: $white
+
+  // Chrome autocomplete
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover, 
+  &:-webkit-autofill:focus, 
+  &:-webkit-autofill:active 
+    -webkit-text-fill-color: $white !important
+    -webkit-box-shadow: 0 0 0 30px $black inset !important

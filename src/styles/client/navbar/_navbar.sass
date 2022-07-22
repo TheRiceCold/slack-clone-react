@@ -1,0 +1,22 @@
+@import "search"
+@import "user_content"
+@import "dropdown/dropdown"
+
+@mixin navbar
+  header.navbar
+    z-index: 10
+    color: $white
+    display: flex
+    position: relative
+    align-items: center
+    background: $dark_blue
+    outline: 1px solid $dark_gray
+    justify-content: space-between
+    svg:hover
+      cursor: pointer
+      border-radius: 5px
+      background: $dark_gray
+
+    @include dropdown
+    @include user_content
+    @include search_content

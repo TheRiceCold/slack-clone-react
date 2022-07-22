@@ -1,0 +1,24 @@
+@mixin introduction
+  .channel_intro
+    padding: 8px 20px
+    h1 
+      font-size: 32px
+    .slackbot
+      display: grid
+      row-gap: 10px
+      padding-top: 10px
+      grid-template-columns: 3.5% auto
+      img
+        width: 45px
+        height: 45px
+        border-radius: 2px
+      > div
+        padding: 0 20px
+        p 
+          padding-bottom: 20px
+        a
+          color: $light_blue
+          text-decoration: none
+          &:hover
+            cursor: pointer
+            text-decoration: underline

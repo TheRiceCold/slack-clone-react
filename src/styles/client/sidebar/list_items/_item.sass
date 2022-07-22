@@ -1,0 +1,17 @@
+@mixin list_item
+  .list_item
+    height: 28px
+    display: flex
+    font-size: 15px
+    cursor: pointer
+    color: $light_gray
+    padding-left: 36px
+    align-items: center
+    text-decoration: none
+    &:hover 
+      background: $dark_gray
+    &[class*="active"]
+      color: $white
+      background: $dim_blue
+    p
+      margin-left: 8px

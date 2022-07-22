@@ -1,0 +1,36 @@
+@mixin buttons
+  .buttons
+    display: flex
+    margin-bottom: 1em
+    a
+      color: $white
+      background: none
+      transition: 0.1s
+      font-weight: 700
+      margin-right: 1em
+      border-radius: 3px
+      padding: 0.95em 2em
+      text-decoration: none
+      border: 1px solid $green
+      text-transform: uppercase
+    button
+      border: none
+      display: flex
+      color: $white
+      font-size: 0.95em
+      cursor: pointer
+      background: $blue
+      font-weight: 600
+      margin-right: 1em
+      border-radius: 3px
+      align-items: center
+      text-decoration: none
+      justify-content: center
+      .google_icon
+        background: $white
+        border-radius: 2px
+        margin-left: 0.25em
+        padding: 0.65em 0.75em
+      span
+        margin: 1em
+        text-transform: uppercase

@@ -1,0 +1,27 @@
+@import "item"
+@import "status_button"
+
+@mixin dropdown
+  .dropdown
+    top: 34px
+    right: 16px
+    width: 300px
+    display: flex
+    cursor: default
+    padding: 10px 0
+    background: $dim
+    border-radius: 8px
+    position: absolute
+    align-items: center
+    flex-direction: column
+    border: 1px solid $dark_gray
+    .dropdown_header
+      width: 95%
+      display: flex
+      align-items: center
+      padding: 10px 1rem 16px
+    .dropdown_content
+      padding: 8px 0
+      border-bottom: 1px solid $dark_gray
+    @include item
+    @include status_button

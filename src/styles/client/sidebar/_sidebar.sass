@@ -1,0 +1,27 @@
+@import "header"
+@import "huddle"
+@import "tab_items/tab_items"
+@import "list_items/list_items"
+
+@mixin sidebar
+  aside.sidebar
+    display: flex 
+    background: $dim
+    min-height: 100vh
+    flex-direction: column
+    border: 1px solid $dark_gray
+
+    .content
+      display: flex
+      color: $light_gray
+      overflow-x: hidden
+      flex-direction: column
+
+      @include tab_items
+      @include list_items
+
+      ::-webkit-scrollbar 
+        display: none 
+
+    @include header
+    @include huddle

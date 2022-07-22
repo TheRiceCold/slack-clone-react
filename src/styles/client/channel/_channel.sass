@@ -1,0 +1,26 @@
+@import "nav_top"
+@import "nav_bottom"
+
+@import "introduction"
+@import "search/search"
+@import "message/message"
+@import "chat_input/chat_input"
+
+@mixin channel
+  .client_container
+    color: $white
+    display: grid
+    background: $black
+    grid-template-columns: 240px auto
+    .channel
+      display: flex
+      color: $light_gray
+      flex-direction: column
+
+      @include nav_top
+      @include nav_bottom
+
+      @include search
+      @include message
+      @include chat_input
+      @include introduction

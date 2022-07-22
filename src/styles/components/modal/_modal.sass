@@ -1,0 +1,15 @@
+@import "overlay"
+@import "header"
+@import "body"
+
+@mixin modal
+  @include overlay
+  .modal 
+    width: 500px
+    padding: 30px
+    cursor: default
+    background: $black
+    border-radius: 8px
+    border: 1px solid $dark_gray
+    @include header
+    @include body
