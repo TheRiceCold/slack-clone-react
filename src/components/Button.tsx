@@ -15,7 +15,11 @@ const Button: React.FC<IProps> = ({
     ? styles.button_solid : styles.button_outline;
 
   return (
-    <button className={buttonClass} style={style}>
+    <button 
+      style={style}
+      onClick={onClick}
+      className={buttonClass} 
+    >
       {children}
     </button>
   );

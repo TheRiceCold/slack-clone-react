@@ -39,7 +39,7 @@ const Sidebar: FC = () => {
     itemKey: "name",
     label: "Channels",
     withGeneralChannel: true,
-    addOnClick: () => setShowModal(true),
+    plusIconOnClick: () => setShowModal(true),
   };
 
   const messageListProps = {
@@ -48,7 +48,7 @@ const Sidebar: FC = () => {
     itemKey: "email",
     label: "Direct Messages",
     withSlackbotChannel: true,
-    addOnClick: () => navigate("new_message"),
+    plusIconOnClick: () => navigate("new_message"),
     itemImg: <UserAvatar size={20} src={images.defaultUser} alt="default user" />
   };
 

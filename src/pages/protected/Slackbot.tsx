@@ -23,7 +23,9 @@ const Slackbot: FC = () => {
         <h4>Slackbot</h4>
       </header>
       <header className={styles.channel_nav_bottom}>
-        <button>+ Add a bookmark</button>
+        <button onClick={() => alert("Not yet available")}>
+          + Add a bookmark
+        </button>
       </header>
       <section className={styles.slackbot_thread}>
         <article className={styles.channel_intro}>
@@ -65,7 +67,10 @@ const Slackbot: FC = () => {
             <p>{message}</p>
             <span className={styles.set_up_profile_button}>
               |&nbsp;
-              <Button style={{ marginTop: 8, fontSize: 13 }}>
+              <Button 
+                style={{ marginTop: 8, fontSize: 13 }}
+                onClick={() => alert("Not yet available")}
+              >
                 Set Up Your Profile
               </Button>
             </span>

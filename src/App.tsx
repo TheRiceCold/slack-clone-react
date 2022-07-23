@@ -6,6 +6,7 @@ import Client from "./pages/protected/Client";
 
 // Client pages/outlet
 import GeneralChannel from "./pages/protected/GeneralChannel";
+import DirectMessage from "./pages/protected/DirectMessage";
 import NewMessage from "./pages/protected/NewMessage";
 import Activities from "./pages/protected/Activities";
 import Slackbot from "./pages/protected/Slackbot";
@@ -31,7 +32,7 @@ const App = () => useRoutes([
       { path: "activity", element: <Activities/> },
       { path: "new_message", element: <NewMessage/> },
       { path: "channel/:id", element: <Channel/> },
-      // { path: "user/:id", element: <DirectMessage/> },
+      { path: "user/:id", element: <DirectMessage/> },
       { path: "channel/general", element: <GeneralChannel/> },
       { path: "*", element: <ChannelNotFound/> },
     ]

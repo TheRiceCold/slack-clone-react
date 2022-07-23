@@ -9,16 +9,21 @@
     background: $dim
     min-height: 100vh
     flex-direction: column
+    justify-content: flex-start
     border: 1px solid $dark_gray
 
     .content
+      clear: both
+      height: 90%
       display: flex
       color: $light_gray
-      overflow-x: hidden
+      overflow-y: scroll
       flex-direction: column
 
       @include tab_items
       @include list_items
+      .slackbot
+        background: none !important
 
       ::-webkit-scrollbar 
         display: none 

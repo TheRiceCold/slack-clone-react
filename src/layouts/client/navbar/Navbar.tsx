@@ -22,14 +22,21 @@ const Navbar: FC = () => {
   return (
     <header className={styles.navbar}>
       <div className={styles.search}>
-        <BiTime size={22} style={{ marginRight: "20px" }}/>
+        <BiTime 
+          size={22} 
+          style={{ marginRight: "20px" }}
+          onClick={() => alert("Not yet available")}
+        />
         <div className={styles.content}>
           <input type="text" placeholder="Search Avion School" />
           <CgSearch size={18}/>
         </div>
       </div> 
       <div className={styles.user_content}>
-        <MdHelpOutline size={22}/>
+        <MdHelpOutline 
+          size={22}
+          onClick={() => alert("Not yet available")}
+        />
         {open && <DropdownMenu/>}
         <UserAvatar {...userAvatarProps} />
       </div>

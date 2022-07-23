@@ -7,16 +7,26 @@
     padding-right: 20px
     align-items: center
     outline: 1px solid $dark_gray
+    h4
+      display: flex
+      padding: 3px 8px
+      border-radius: 3px
+      &:hover
+        cursor: pointer
+        background: $dim_gray
+      svg
+        margin-top: 4px
     img 
       width: 30px
       height: 30px
       border-radius: 2px
     .members_button
       height: 28px
-      padding: 5px
+      padding: 2px
       display: flex
       cursor: pointer
       background: none
+      margin-left: auto
       border-radius: 4px
       align-items: center
       border: 1px solid $dark_gray
@@ -24,6 +34,6 @@
         background: $dim
       p
         color: $gray
+        margin: 0 6px
         font-size: 13px
-        margin-left: 8px
         font-weight: bold

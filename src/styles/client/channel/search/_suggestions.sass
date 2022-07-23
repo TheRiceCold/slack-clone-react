@@ -1,0 +1,22 @@
+@mixin suggestions
+  .suggestions
+    width: 98%
+    display: none
+    font-size: 15px
+    max-height: 240px
+    margin-top: -10px
+    overflow-y: scroll
+    border-radius: 8px
+    padding: 1em 0 1em 0
+    background: $dim_gray
+    border: 1px solid $dark_gray
+    .item
+      display: flex
+      cursor: pointer
+      align-items: center
+      padding: 0.5em 0 0.5em 20px
+      p
+        font-weight: bold
+      img
+        height: 20px
+        margin-right: 8px

@@ -13,10 +13,7 @@ import UserType from "@/types/UserType";
 import Axios from "@/utils/axios";
 
 interface IContext {
-  users: UserType[];
-  getEmailById: (id: Number) => string;
-  getAllUsers: () => Promise<UserType[]>;
-  setUsers: Dispatch<SetStateAction<UserType[]>>;
+  getUsers: () => Promise<UserType[]>;
 };
 
 const UsersContext = createContext({} as IContext);
@@ -27,32 +24,18 @@ interface IProps {
 };
 
 const UsersProvider: FC<IProps> = ({children}) => {
-  const [users, setUsers] = useState<UserType[]>([]);
-
   const {authData} = useAuth();
   
-  const getAllUsers = async() => {
+  const getUsers = async() => {
     const { data: {data} } = await Axios(
       "users", 
       {headers: authData}
     );
-    return data;
-  }
-  
-  const getEmailById = (id: Number) => {
-    const foundUser = users.find(
-      (user: UserType) => user.id === id
-    ) as UserType;
-    return foundUser.email;
+    return data as UserType[];
   }
 
   return (
-    <UsersContext.Provider value={{ 
-      users,
-      setUsers, 
-      getAllUsers,
-      getEmailById, 
-    }}>
+    <UsersContext.Provider value={{ getUsers }}>
       {children}
     </UsersContext.Provider>
   );

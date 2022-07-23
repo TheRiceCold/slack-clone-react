@@ -5,6 +5,7 @@
 @import "search/search"
 @import "message/message"
 @import "chat_input/chat_input"
+@import "conversations/conversations"
 
 @mixin channel
   .client_container
@@ -13,6 +14,7 @@
     background: $black
     grid-template-columns: 240px auto
     .channel
+      height: 100%
       display: flex
       color: $light_gray
       flex-direction: column
@@ -24,3 +26,4 @@
       @include message
       @include chat_input
       @include introduction
+      @include conversations

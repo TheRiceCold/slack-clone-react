@@ -1,4 +1,6 @@
+@import "suggestions"
 @import "selected"
+@import "input"
 
 @mixin search
   .search_user 
@@ -9,12 +11,6 @@
     align-items: center
     justify-content: space-between
     border-bottom: 1px solid $dark_gray
-    label 
-      margin-right: 8px
-    input
-      width: 100%
-      height: 100%
-      color: $gray
-      font-size: 14px
-      background: none
-      margin-left: 7px
+    @include input
+  @include selected
+  @include suggestions

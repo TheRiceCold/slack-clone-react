@@ -16,9 +16,9 @@ interface IProps {
 };
 
 const Conversations: FC<IProps> = ({ id, type }) => {
-  const [isSent, setIsSent] = useState(false);
+  const [isSent, setIsSent] = useState(true);
   const {sendMessage, getMessages} = useMessages();
-  const [message, setMessage] = useState<string>("");
+  const [messageInput, setMessageInput] = useState<string>("");
   const [conversations, setConversations] = useState<MessageType[]>([]);
 
   useEffect(() => {
@@ -26,32 +26,45 @@ const Conversations: FC<IProps> = ({ id, type }) => {
       const data = await getMessages(type, id);
       setConversations(data);
     })()
-  }, [id, isSent]);
+  }, [isSent]);
 
   const handleClick = (): void => {
-    sendMessage(type, id, message);
+    sendMessage(type, id, messageInput);
+    setMessageInput("");
     setIsSent(!isSent);
-    setMessage("")
   };
 
   return (
     <>
       <section className={styles.conversations}>
-        {conversations && conversations.map(({sender: {email}, created_at, body}, index) => (
-          <article className={styles.message}>
-            <UserAvatar size={36} src={images.defaultUser} alt="default user" />
+        {conversations && conversations.map((
+          {
+            body,
+            created_at, 
+            sender: {email},
+          }) => (
+          <article key={created_at} className={styles.message}>
+            <UserAvatar 
+              size={36} 
+              alt="default user" 
+              src={images.defaultUser} 
+            />
             <div className={styles.content}>
               <div className={styles.user}>
-
+                <p>{email}</p>
+                <p className={styles.date}>
+                  {created_at.substring(0, 10)}
+                </p>
               </div>
+              <p>{body}</p>
             </div>
           </article>
         ))}
       </section>
       <ChatInput
-        input={message}
-        setInput={setMessage}
+        input={messageInput}
         handleClick={handleClick}
+        setInput={setMessageInput}
       />
     </>
   );

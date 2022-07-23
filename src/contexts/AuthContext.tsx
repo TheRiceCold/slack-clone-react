@@ -8,9 +8,12 @@ import {
 } from "react";
 
 import AuthDataType from "@/types/AuthDataType";
+import CryptoENC from "crypto-js/enc-utf8";
 import Axios from "@/utils/axios";
+import Crypto from "crypto-js";
 
 interface IContext {
+  isAuth: boolean,
   authData: AuthDataType,
   login: (
     email: string, 
@@ -31,9 +34,14 @@ interface IProps {
 };
 
 const AuthProvider: FC<IProps> = ({children}) => {
-  const {getItem} = useStorage();
-  let storedAuth: string | null = getItem("auth");
-  const authData: AuthDataType = storedAuth && JSON.parse(storedAuth);
+  const key = "auth";
+  const storage = useStorage();
+  const secret = import.meta.env.VITE_SECRET;
+
+  const storedAuth: string | null = storage.getItem(key);
+  const decryptedAuthData: string | null = storedAuth && Crypto.AES.decrypt(storedAuth, secret).toString(CryptoENC);
+  const authData = JSON.parse(decryptedAuthData ?? "{}");
+  const isAuth = Object.keys(authData).length !== 0;
 
   const signup = async(
     email: string,
@@ -55,17 +63,22 @@ const AuthProvider: FC<IProps> = ({children}) => {
 
   const login = async(email: string, password: string) => {
     try { 
-      return await Axios.post(
-        "auth/sign_in", 
-        { email, password }
-      );
-    } catch (err: any) {
-      return err.message;
+      const res = await Axios.post("auth/sign_in", { email, password });
+      const authData = JSON.stringify(res.headers);
+      
+      storage.setItem(key, Crypto.AES.encrypt(authData, secret).toString());
+
+      return res;
+    } catch (error: any) {
+      return error.response;
     }
   }
 
   return (
-    <AuthContext.Provider value={{ login, signup, authData }}>
+    <AuthContext.Provider value={{ 
+      login, signup, 
+      authData, isAuth
+    }}>
       {children}
     </AuthContext.Provider>
   )

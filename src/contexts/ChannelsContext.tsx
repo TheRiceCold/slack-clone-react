@@ -8,14 +8,15 @@ import {
   FC,
 } from "react";
 
+import ChannelDetailsType from "@/types/ChannelDetailsType";
 import ChannelType from "@/types/ChannelType";
 import Axios from "@/utils/axios";
 
 interface IContext {
   getOwnedChannels: () => Promise<ChannelType[]>;
   getAllUsersChannels: () => Promise<ChannelType[]>;
-  getChannelDetails: (id: Number) => Promise<AxiosResponse>;
-  addMemberToChannel: (body: string) => Promise<AxiosResponse>
+  getChannelDetails: (id: Number) => Promise<ChannelDetailsType>;
+  addMemberToChannel: (body: string) => Promise<AxiosResponse>;
   createChannel: (
     name: string, 
     user_ids: Number[]

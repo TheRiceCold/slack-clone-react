@@ -1,15 +1,19 @@
 import styles from "@/styles/client/Client.module.sass";
 import images from "@/constants/images";
 
-import {findObjectByKey} from "@/utils/helpers";
 import {CgClose} from "react-icons/cg";
 import {
   MutableRefObject,
+  useEffect,
   useState, 
   Fragment,
   useRef, 
   FC, 
 } from "react";
+import {
+  findObjectByKey, 
+  getEmailById,
+} from "@/utils/helpers";
 
 import {useMessages} from "@/contexts/MessagesContext";
 import {useUsers} from "@/contexts/UsersContext";
@@ -18,15 +22,30 @@ import UserAvatar from "@/components/UserAvatar";
 import UserType from "@/types/UserType";
 
 const SearchUser: FC = () => {
-  const {users, getEmailById} = useUsers();
-  const inputRef = useRef<HTMLInputElement>();
+  const {getUsers} = useUsers();
   const {selectedId, setSelectedId} = useMessages();
+
+  const inputRef = useRef<HTMLInputElement>();
+  const [users, setUsers] = useState<UserType[]>();
   const [suggestions, setSuggestions] = useState<UserType[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+
+  useEffect(() => {
+    (async () => setUsers(await getUsers()))()
+  }, [])
 
   const handleChange = () => {
+    let matches = [];
     const input = inputRef.current as HTMLInputElement;
-    let matches = input.value.length > 0 ? findObjectByKey(users, "email", input.value) : [];
-    setSuggestions(matches);
+
+    if (!!input.value.length) {
+      matches = findObjectByKey(users, "email", input.value)
+      setShowSuggestions(true);
+      setSuggestions(matches);
+    } else {
+      matches = [];
+      setShowSuggestions(false);
+    }
   };
 
   const handleClick = (id: Number) => {
@@ -37,23 +56,16 @@ const SearchUser: FC = () => {
   };
 
   const inputProps = {
-    ref: inputRef as MutableRefObject<HTMLInputElement>,
     onChange: handleChange,
+    ref: inputRef as MutableRefObject<HTMLInputElement>,
     placeholder: "#a-channel, @somebody, or somebody@example.com"
-  };
-
-  const suggestionProps = (suggestions: UserType[]) => {
-    return {
-      show: suggestions.length,
-      className: styles.suggestions
-    };
   };
 
   const suggestionItemProps = (user: UserType, key: any) => {
     return {
       key,
       className: styles.item,
-      onClick: () => handleClick(user.id)
+      onClick: () => handleClick(user.id),
     };
   };
 
@@ -69,13 +81,16 @@ const SearchUser: FC = () => {
         {selectedId && 
           <div className={styles.selected}>
             <UserAvatar src={images.defaultUser} alt="default user" />
-            <p>{getEmailById(selectedId)}</p>
+            <p>{getEmailById(users, selectedId)}</p>
             <CgClose {...closeIconProps}/>
           </div> 
         }
         <input {...inputProps}/>
       </div>
-      <div {...suggestionProps(suggestions)}>
+      <div
+        className={styles.suggestions}
+        style={{ display: showSuggestions ? "initial" : "none" }}
+      >
         {suggestions.map((user: UserType, index) => (
           <div {...suggestionItemProps(user, index)}>
             <UserAvatar src={images.defaultUser} alt="default user" />

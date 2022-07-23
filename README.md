@@ -1,7 +1,7 @@
 <!-- Project Logo -->
 <div align="center">
   <a href="https://github.com/dwghdev/slack-clone-react">
-    <img src="public/slack-logo.svg" height="80">
+    <img src="public/slack_logo.svg" height="80">
   </a>
 
   <h3 align="center">Slack (Clone)</h3>

@@ -35,11 +35,10 @@ const ChatInput: FC<IProps> = ({
     active: active ? 0 : 1
   };
 
-  useEffect(() => setActive(!input), [input]);
-
   const handleChange = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     setInput(target.value);
+    setActive(!!target.value);
   };
   
   const handleKeyPress = (e: KeyboardEvent) => {

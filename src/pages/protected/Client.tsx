@@ -1,7 +1,10 @@
 import styles from "@/styles/client/Client.module.sass";
 
-import {Outlet, useLocation} from "react-router-dom";
-import {useAuth} from "@/contexts/AuthContext";
+import {
+  useLocation, 
+  Navigate,
+  Outlet, 
+} from "react-router-dom";
 import {FC} from "react";
 
 import Sidebar from "@/layouts/client/sidebar/Sidebar";
@@ -10,12 +13,13 @@ import Navbar from "@/layouts/client/navbar/Navbar";
 import ChannelsProvider from "@/contexts/ChannelsContext";
 import MessagesProvider from "@/contexts/MessagesContext";
 import UsersProvider from "@/contexts/UsersContext";
+import {useAuth} from "@/contexts/AuthContext";
 
 const Client: FC = () => {
-  // const {auth} = useAuth();
+  const {isAuth} = useAuth();
   const location = useLocation();
   
-  return (
+  return (isAuth ?
     <main className={styles.client_page}>
       <Navbar/>
       <ChannelsProvider>
@@ -28,7 +32,8 @@ const Client: FC = () => {
           </UsersProvider>
         </MessagesProvider>
       </ChannelsProvider>
-    </main> 
+    </main> :
+      <Navigate to="/" />
   );
 };
 

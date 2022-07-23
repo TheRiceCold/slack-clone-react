@@ -40,7 +40,6 @@ const NewMessage: FC = () => {
         <h4>New message</h4>
       </header>
       <SearchUser />
-      {id && <Conversations id={id} type="User"/>}
       <ChatInput {...chatInputProps} />
     </section>
   );

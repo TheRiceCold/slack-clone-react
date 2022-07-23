@@ -16,7 +16,7 @@ interface IProps {
   itemKey: any;
   label: string;
   itemImg?: ReactNode;
-  addOnClick: () => void;
+  plusIconOnClick: () => void;
   withGeneralChannel?: boolean;
   withSlackbotChannel?: boolean;
   list: ChannelType[] | MessageSenderType[];
@@ -28,13 +28,14 @@ const ListItems: FC<IProps> = ({
   label, 
   itemKey, 
   itemImg,
-  addOnClick,
+  plusIconOnClick,
   withGeneralChannel, 
   withSlackbotChannel,
 }) => { 
 
   const [isRotate, setIsRotate] = useState(false);
   const [isShowOptions, setShowOptions] = useState(false);
+
   const rotateAnimStyle = {
     transition: "transform 0.1s ease",
     transform: `rotate(${isRotate ? "90deg" : "0deg"})`
@@ -63,25 +64,36 @@ const ListItems: FC<IProps> = ({
           <button>
             <FiMoreVertical size={18}/>
           </button>    
-          <button onClick={addOnClick}>
+          <button onClick={plusIconOnClick}>
             <HiPlus size={18}/>
           </button>
         </div>
       </div>
-      <div style={{ display: !isRotate ? "none" : "" }}>
+      <div 
+        className={styles.list} 
+        style={{ display: !isRotate ? "none" : "" }}
+      >
         {withGeneralChannel && 
           <NavLink to="channel/general" className={styles.list_item}>
             # general
           </NavLink>
         }
         {withSlackbotChannel && 
-          <NavLink to="" className={styles.list_item}>
+          <NavLink 
+            to="/client" 
+            className={styles.list_item}
+            style={{ background: "none" }}
+          >
             <UserAvatar size={20} src={images.slackbot} alt="slackbot" />
             <p>Slackbot</p>
           </NavLink>
         }
         {list && list.map((item: any, index) => (
-          <NavLink key={index} to={`${path}/${item.id}`}>
+          <NavLink 
+            key={index} 
+            to={`${path}/${item.id}`}
+            className={styles.list_item}
+          >
             {itemImg}
             <p>{item[itemKey]}</p>
           </NavLink>

@@ -3,11 +3,18 @@ import images from "@/constants/images";
 
 import {useChannels} from "@/contexts/ChannelsContext";
 import {useUsers} from "@/contexts/UsersContext";
-import {useState, FC, Fragment} from "react";
+import {getEmailById} from "@/utils/helpers";
 import {CgClose} from "react-icons/cg";
+import {
+  useEffect, 
+  useState, 
+  Fragment,
+  FC, 
+} from "react";
 
 import SearchMember from "@/layouts/client/SearchMember";
 import UserAvatar from "@/components/UserAvatar";
+import UserType from "@/types/UserType";
 import Modal from "@/components/Modal";
 
 interface IProps {
@@ -21,31 +28,43 @@ const MembersModal: FC<IProps> = ({
   isOpenNext, 
   channelName, 
 }) => {
-  const {getEmailById} = useUsers();
+  const {getUsers} = useUsers();
   const {createChannel} = useChannels();
+  const [users, setUsers] = useState<UserType[]>();
   const [selected, setSelected] = useState<Number[]>([]);
+
+  useEffect(() => {
+    (async () => setUsers(await getUsers()))()
+  }, []);
 
   const modalProps = {
     handleClick: () => createChannel(channelName, selected),
     buttonContent: selected.length ? "Create" : "Skip for now",
   };
 
+  console.log(styles.add_members_modal);
+
   return (
     <Fragment>
       {isOpenNext &&
-        <Modal title={`# ${channelName}`} onClose={onClose}>
-          <SearchMember setSelected={setSelected}/>
+        <Modal 
+          onClose={onClose}
+          title="Add Members" 
+          className={styles.add_members_modal}
+        >
+          <p className={styles.name}># {channelName}</p>
+          <SearchMember setSelected={setSelected} />
           <h4>Users to be added: </h4>
           {selected && selected.map((id: any) => (
             <div 
               key={id} 
-              className={styles.members_selected}
+              className={styles.selected}
             >
               <UserAvatar 
                 alt="default user"
                 src={images.defaultUser} 
               />
-              <p>{getEmailById(id)}</p>
+              <p>{getEmailById(users, id)}</p>
               <CgClose 
                 size={18} 
                 onClick={() => {

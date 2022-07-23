@@ -1,0 +1,25 @@
+@mixin conversations
+  .conversations
+    height: 70vh
+    display: flex
+    overflow-y: scroll
+    flex-direction: column
+    justify-content: flex-start
+
+    .message:hover
+      background: $dim
+
+    .user
+      display: flex
+      font-size: 15px
+      font-weight: 600
+      align-items: center
+      p:hover
+        cursor: pointer
+        text-decoration: underline
+      .date
+        color: $gray
+        font-size: 12px
+        margin-top: 6px
+        margin-left: 8px
+        font-weight: 400

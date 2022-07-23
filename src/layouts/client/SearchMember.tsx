@@ -9,6 +9,7 @@ import {
 import {
   SetStateAction,
   ChangeEvent,
+  useEffect,
   Dispatch,
   Fragment, 
   useState, 
@@ -23,9 +24,14 @@ interface IProps {
 };
 
 const SearchMember: FC<IProps> = ({setSelected}) => {
-  const {users} = useUsers();
+  const {getUsers} = useUsers();
   const [input, setInput] = useState<string>("");
+  const [users, setUsers] = useState<UserType[]>();
   const [suggestions, setSuggestions] = useState<UserType[]>([]);
+
+  useEffect(() => {
+    (async () => setUsers(await getUsers()))()
+  }, []);
 
   const handleChange = (e: ChangeEvent) => {
     const input = e.target as HTMLInputElement;
@@ -49,12 +55,16 @@ const SearchMember: FC<IProps> = ({setSelected}) => {
         {suggestions.map((user: UserType, index) => (
           <div 
             key={index} 
+            className={styles.item}
             onClick={() => setSelected(
               (current: Number[]) => uniqueArray([...current, user.id])
             )}
           >
-            <UserAvatar src={images.defaultUser} alt="default user" />
-            <span>{user.email}</span>
+            <UserAvatar 
+              alt="default user" 
+              src={images.defaultUser} 
+              />
+            <p>{user.email}</p>
           </div>
         ))}
       </div>

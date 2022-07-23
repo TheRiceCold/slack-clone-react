@@ -1,7 +1,8 @@
 import styles from "@/styles/auth/Auth.module.sass";
 import images from "@/constants/images";
 
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
+import {useAuth} from "@/contexts/AuthContext";
 import {FC} from "react";
 
 import AuthForm from "./AuthForm";
@@ -24,6 +25,8 @@ const AuthPage: FC<IProps> = props => {
     description
   } = props;
 
+  const {isAuth} = useAuth();
+
   const authFormProps = (form: AuthFormType) => {
     return {
       onSubmit: form.onSubmit,
@@ -32,7 +35,7 @@ const AuthPage: FC<IProps> = props => {
     };
   };
 
-  return (
+  return (!isAuth ? 
     <section className={styles.auth_page_content}>
       <img src={images.slackLogo} alt="slack logo" />
       <h3>{title}</h3>
@@ -41,7 +44,8 @@ const AuthPage: FC<IProps> = props => {
       <Link to={link}>
         {linkLabel}
       </Link>
-    </section>
+    </section> :
+      <Navigate to="/client" />
   );
 };
 

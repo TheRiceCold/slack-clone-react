@@ -4,19 +4,28 @@ import {CgClose} from "react-icons/cg";
 import {FC, ReactNode} from "react";
 
 interface IProps {
-  title: string,
+  title: string;
+  className?: string;
   onClose: () => void;
   children: ReactNode | ReactNode;
 }
 
-const Modal: FC<IProps> = ({title, onClose, children}) => {
+const Modal: FC<IProps> = ({
+  title, 
+  onClose, 
+  children,
+  className,
+}) => {
   return (
     <section
       onClick={onClose}
       className={styles.modal_overlay}
     >
       <article
-        className={styles.modal}
+        className={`
+          ${className}
+          ${styles.modal}
+        `}
         onClick={e => e.stopPropagation()}
       >
         <header className={styles.modal_header}>

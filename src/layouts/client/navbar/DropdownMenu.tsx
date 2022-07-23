@@ -6,10 +6,19 @@ import {BiChevronRight} from "react-icons/bi";
 import {FaRegSmile} from "react-icons/fa";
 import {FC} from "react";
 
+import {useAuth} from "@/contexts/AuthContext";
+import {useStorage} from "@/hooks/useStorage";
+
 import UserAvatar from "@/components/UserAvatar";
 
 const DropdownMenu: FC = () => {
-  // const email = useAuth().auth.uid;
+  const {authData} = useAuth();
+  const storage = useStorage();
+
+  const handleSignOut = () => {
+    storage.removeItem("auth");
+    location.reload(); 
+  };
 
   return (
     <article className={styles.dropdown}>
@@ -23,7 +32,7 @@ const DropdownMenu: FC = () => {
           <p style={{
             color: "lightgray",
             fontWeight: "bold"
-          }}>Email</p>
+          }}>{authData.uid}</p>
           <span style={{
             fontSize: 13,
             color: "gray",
@@ -61,8 +70,8 @@ const DropdownMenu: FC = () => {
 
       <footer style={{ paddingTop: "8px" }}>
         <span 
+          onClick={handleSignOut}
           className={styles.dropdown_item}
-          onClick={() => localStorage.removeItem("user")}
         >
           Sign out of Avion School
         </span>

@@ -31,9 +31,12 @@ const Login: FC = () => {
     const pwd = target.pwd.value;
 
     const res = await login(email, pwd);
-    if (res.status === 200)
-      console.log("logged in!")
-      // router.push("/client");
+    if (res.status === 200) 
+      location.reload();
+    else {
+      const [message]: string = res.data.errors;
+      alert(message);
+    }
   };
 
   const authPageProps = {
